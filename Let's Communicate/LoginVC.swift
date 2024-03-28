@@ -8,7 +8,7 @@
 import UIKit
 
 class LoginVC: UIViewController {
-
+    
     
     //MARK: Properties
     
@@ -21,6 +21,14 @@ class LoginVC: UIViewController {
         return imageView
     }()
     
+    private lazy var emailContainer: AuthenticationView = {
+        let containerView = AuthenticationView(image: UIImage(systemName: "mail")!, textField: emailTextField)
+        return containerView
+    }()
+    
+    
+    private let emailTextField = EmailTextField(placeholder: "Email")
+  
     
     
     //MARK: Lifecycle
@@ -30,24 +38,34 @@ class LoginVC: UIViewController {
         Style()
         Layout()
     }
-
-
+    
+    
 }
 //MARK: Helpers
 extension LoginVC {
     private func Style(){
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
+        emailContainer.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private func Layout(){
         view.addSubview(iconImageView)
+        view.addSubview(emailContainer)
         
         
         NSLayoutConstraint.activate([
+            
+            //MARK: iconImageView
             iconImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
             iconImageView.heightAnchor.constraint(equalToConstant: 150),
             iconImageView.widthAnchor.constraint(equalToConstant: 150),
             iconImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            //MARK: emailContainer
+            emailContainer.topAnchor.constraint(equalTo: iconImageView.bottomAnchor, constant: 30),
+            emailContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            emailContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            emailContainer.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
 }

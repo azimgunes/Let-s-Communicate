@@ -14,6 +14,5 @@ extension UIViewController {
         gradientLayer.colors = [UIColor.white.cgColor, UIColor.systemPurple.cgColor]
         gradientLayer.frame = view.bounds
         view.layer.addSublayer(gradientLayer)
-        
     }
 }
