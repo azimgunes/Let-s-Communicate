@@ -17,7 +17,7 @@ class LoginVC: UIViewController {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.image = UIImage(named: "appIcon")
-        imageView.tintColor = .white
+        imageView.tintColor = .purple
         return imageView
     }()
     
@@ -30,6 +30,24 @@ class LoginVC: UIViewController {
     private let emailTextField = EmailTextField(placeholder: "Email")
   
     
+    private lazy var passwordContainer: AuthenticationView = {
+        let containerView = AuthenticationView(image: UIImage(systemName: "lock.rectangle")!, textField: passwordTextField)
+        return containerView
+    }()
+    
+    
+    private let passwordTextField = PasswordTextField(placeholder: "Password")
+    private var stackView = UIStackView()
+    private let loginButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setTitle("Log In", for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.backgroundColor = #colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1)
+        button.layer.cornerRadius = 15
+        button.isEnabled = false
+        return button
+    }()
+  
     
     //MARK: Lifecycle
     override func viewDidLoad() {
@@ -44,13 +62,24 @@ class LoginVC: UIViewController {
 //MARK: Helpers
 extension LoginVC {
     private func Style(){
+        
+        
+        self.navigationController?.navigationBar.isHidden = true
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
         emailContainer.translatesAutoresizingMaskIntoConstraints = false
+        stackView = UIStackView(arrangedSubviews: [
+        emailContainer, passwordContainer, loginButton
+        ])
+        stackView.axis = .vertical
+        stackView.spacing = 14
+        stackView.distribution = .fillEqually
+        stackView.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private func Layout(){
         view.addSubview(iconImageView)
-        view.addSubview(emailContainer)
+        view.addSubview(stackView)
+      
         
         
         NSLayoutConstraint.activate([
@@ -62,11 +91,12 @@ extension LoginVC {
             iconImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             //MARK: emailContainer
-            emailContainer.topAnchor.constraint(equalTo: iconImageView.bottomAnchor, constant: 30),
-            emailContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            emailContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            stackView.topAnchor.constraint(equalTo: iconImageView.bottomAnchor, constant: 30),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             emailContainer.heightAnchor.constraint(equalToConstant: 30)
         ])
+        
     }
 }
 

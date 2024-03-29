@@ -10,6 +10,7 @@
 		3C4528122BB4AF8D001C7047 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4528112BB4AF8D001C7047 /* Extension.swift */; };
 		3C52AC132BB5B6440012C1F6 /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C52AC122BB5B6440012C1F6 /* AuthenticationView.swift */; };
 		3C52AC172BB5BBAC0012C1F6 /* EmailTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C52AC162BB5BBAC0012C1F6 /* EmailTextField.swift */; };
+		3C9B6F7B2BB73AF900236B0F /* PasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9B6F7A2BB73AF900236B0F /* PasswordTextField.swift */; };
 		3CFA7BCF2BB217A2000DA8F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFA7BCE2BB217A2000DA8F2 /* AppDelegate.swift */; };
 		3CFA7BD12BB217A2000DA8F2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFA7BD02BB217A2000DA8F2 /* SceneDelegate.swift */; };
 		3CFA7BD32BB217A2000DA8F2 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFA7BD22BB217A2000DA8F2 /* LoginVC.swift */; };
@@ -22,6 +23,7 @@
 		3C4528112BB4AF8D001C7047 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		3C52AC122BB5B6440012C1F6 /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
 		3C52AC162BB5BBAC0012C1F6 /* EmailTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailTextField.swift; sourceTree = "<group>"; };
+		3C9B6F7A2BB73AF900236B0F /* PasswordTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordTextField.swift; sourceTree = "<group>"; };
 		3CFA7BCB2BB217A2000DA8F2 /* Let's Communicate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Let's Communicate.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CFA7BCE2BB217A2000DA8F2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3CFA7BD02BB217A2000DA8F2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 			children = (
 				3C52AC122BB5B6440012C1F6 /* AuthenticationView.swift */,
 				3C52AC162BB5BBAC0012C1F6 /* EmailTextField.swift */,
+				3C9B6F7A2BB73AF900236B0F /* PasswordTextField.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 			files = (
 				3CFA7BD32BB217A2000DA8F2 /* LoginVC.swift in Sources */,
 				3CFA7BCF2BB217A2000DA8F2 /* AppDelegate.swift in Sources */,
+				3C9B6F7B2BB73AF900236B0F /* PasswordTextField.swift in Sources */,
 				3C52AC172BB5BBAC0012C1F6 /* EmailTextField.swift in Sources */,
 				3CFA7BD12BB217A2000DA8F2 /* SceneDelegate.swift in Sources */,
 				3C4528122BB4AF8D001C7047 /* Extension.swift in Sources */,

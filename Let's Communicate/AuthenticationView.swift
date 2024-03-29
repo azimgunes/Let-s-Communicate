@@ -14,7 +14,7 @@ class AuthenticationView: UIView {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.image = image
-        imageView.tintColor = .white
+        imageView.tintColor = .purple
         imageView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(imageView)
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -25,8 +25,8 @@ class AuthenticationView: UIView {
             //MARK: imageView in containerView
             imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             imageView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            imageView.heightAnchor.constraint(equalToConstant: 30),
-            imageView.widthAnchor.constraint(equalToConstant: 30),
+            imageView.heightAnchor.constraint(equalToConstant: 25),
+            imageView.widthAnchor.constraint(equalToConstant: 25),
             
             //MARK: emailTextField in containerView
             textField.centerYAnchor.constraint(equalTo: imageView.centerYAnchor),
@@ -34,6 +34,9 @@ class AuthenticationView: UIView {
             trailingAnchor.constraint(equalTo: trailingAnchor, constant: 8),
             
         ])
+        layer.borderColor = UIColor.purple.cgColor
+        layer.borderWidth = 0.2
+        layer.cornerRadius = 15
     }
     
     required init?(coder: NSCoder) {
