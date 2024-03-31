@@ -22,16 +22,17 @@ class AuthenticationView: UIView {
         //MARK: imageView Anchors
         NSLayoutConstraint.activate([
             
-            //MARK: imageView in containerView
+            //MARK: imageView Constraints
             imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             imageView.centerYAnchor.constraint(equalTo: centerYAnchor),
             imageView.heightAnchor.constraint(equalToConstant: 25),
             imageView.widthAnchor.constraint(equalToConstant: 25),
             
-            //MARK: emailTextField in containerView
+            //MARK: emailTextField Constraints
             textField.centerYAnchor.constraint(equalTo: imageView.centerYAnchor),
             textField.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 8),
             trailingAnchor.constraint(equalTo: trailingAnchor, constant: 8),
+
             
         ])
         layer.borderColor = UIColor.purple.cgColor
