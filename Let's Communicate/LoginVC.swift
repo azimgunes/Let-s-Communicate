@@ -49,6 +49,13 @@ class LoginVC: UIViewController {
         return button
     }()
   
+    private lazy var registerPage: UIButton = {
+        let button = UIButton(type: .system)
+        let attributeTitle = NSMutableAttributedString(string: "Register!", attributes: [.foregroundColor: UIColor(#colorLiteral(red: 0.1215686277, green: 0.01176470611, blue: 0.4235294163, alpha: 1)), .font: UIFont.boldSystemFont(ofSize: 12)])
+        button.setAttributedTitle(attributeTitle, for: .normal)
+        button.addTarget(self, action: #selector(toRegisterVC), for: .touchUpInside)
+        return button
+    }()
     
     //MARK: Lifecycle
     override func viewDidLoad() {
@@ -82,7 +89,7 @@ extension LoginVC {
         self.navigationController?.navigationBar.isHidden = true
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
         emailContainer.translatesAutoresizingMaskIntoConstraints = false
-        
+        registerPage.translatesAutoresizingMaskIntoConstraints = false
         
         // StackView
         
@@ -103,6 +110,7 @@ extension LoginVC {
         view.addSubview(iconImageView)
         view.addSubview(stackView)
         view.addSubview(loginButton)
+        view.addSubview(registerPage)
       
         
         
@@ -120,9 +128,18 @@ extension LoginVC {
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             emailContainer.heightAnchor.constraint(equalToConstant: 30),
             
+            //MARK: loginButton
             loginButton.topAnchor.constraint(equalTo: passwordContainer.bottomAnchor, constant: 20),
             loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 150),
             loginButton.widthAnchor.constraint(equalToConstant: 100),
+            
+            //MARK: RegisterVcButton
+            registerPage.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 4),
+            registerPage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 36),
+            view.trailingAnchor.constraint(equalTo: registerPage.trailingAnchor, constant: 32),
+           
+            
+
         ])
         
     }
@@ -139,5 +156,11 @@ extension LoginVC{
         }
         loginButtonStatus()
 
+    }
+    
+    
+    @objc private func toRegisterVC(_ sender: UIButton){
+        let controller = RegisterVC()
+        //self.navigationController?.popToViewController(controller, animated: true)
     }
 }
