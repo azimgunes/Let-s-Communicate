@@ -14,7 +14,7 @@ class AuthenticationView: UIView {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.image = image
-        imageView.tintColor = .purple
+        imageView.tintColor =  #colorLiteral(red: 0.1215686277, green: 0.01176470611, blue: 0.4235294163, alpha: 1)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(imageView)
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -35,9 +35,9 @@ class AuthenticationView: UIView {
 
             
         ])
-        layer.borderColor = UIColor.purple.cgColor
+        layer.borderColor = UIColor( #colorLiteral(red: 0.1215686277, green: 0.01176470611, blue: 0.4235294163, alpha: 1)).cgColor
         layer.borderWidth = 0.2
-        layer.cornerRadius = 15
+        layer.cornerRadius = 5
     }
     
     required init?(coder: NSCoder) {

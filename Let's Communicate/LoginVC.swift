@@ -24,13 +24,18 @@ class LoginVC: UIViewController {
         return imageView
     }()
     
-    private let emailTextField = EmailTextField(placeholder: "Email")
+    private let emailTextField = CustomTextField(placeholder: "Email")
     private lazy var emailContainer: AuthenticationView = {
         let containerView = AuthenticationView(image: UIImage(systemName: "mail")!, textField: emailTextField)
         return containerView
     }()
     
-    private let passwordTextField = PasswordTextField(placeholder: "Password")
+    private let passwordTextField : CustomTextField = {
+        let textField =  CustomTextField(placeholder: "Password")
+        textField.isSecureTextEntry = true
+        return textField
+    }()
+    
     private lazy var passwordContainer: AuthenticationView = {
         let containerView = AuthenticationView(image: UIImage(systemName: "lock.rectangle")!, textField: passwordTextField)
         return containerView
@@ -43,7 +48,7 @@ class LoginVC: UIViewController {
         button.setTitle("Log In", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
-        button.layer.cornerRadius = 15
+        button.layer.cornerRadius = 10
         button.isEnabled = false
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -64,7 +69,12 @@ class LoginVC: UIViewController {
         Style()
         Layout()
     }
-    
+    @objc private func toRegisterVC(_ sender: UIButton){
+        let controller = RegisterVC()
+        controller.modalPresentationStyle = .fullScreen
+        controller.modalTransitionStyle = .crossDissolve
+        present(controller, animated: true, completion: nil)
+    }
     
 }
 
@@ -159,8 +169,5 @@ extension LoginVC{
     }
     
     
-    @objc private func toRegisterVC(_ sender: UIButton){
-        let controller = RegisterVC()
-        //self.navigationController?.popToViewController(controller, animated: true)
-    }
+ 
 }
