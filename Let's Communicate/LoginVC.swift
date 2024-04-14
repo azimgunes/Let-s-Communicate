@@ -56,7 +56,7 @@ class LoginVC: UIViewController {
     
     private lazy var registerPage: UIButton = {
         let button = UIButton(type: .system)
-        let attributeTitle = NSMutableAttributedString(string: "Register!", attributes: [.foregroundColor: UIColor(#colorLiteral(red: 0.1215686277, green: 0.01176470611, blue: 0.4235294163, alpha: 1)), .font: UIFont.boldSystemFont(ofSize: 12)])
+        let attributeTitle = NSMutableAttributedString(string: "Create a New Account! Register!", attributes: [.foregroundColor: UIColor(#colorLiteral(red: 0.1215686277, green: 0.01176470611, blue: 0.4235294163, alpha: 1)), .font: UIFont.boldSystemFont(ofSize: 12)])
         button.setAttributedTitle(attributeTitle, for: .normal)
         button.addTarget(self, action: #selector(toRegisterVC), for: .touchUpInside)
         return button
@@ -124,7 +124,7 @@ extension LoginVC {
             emailContainer, passwordContainer, loginButton
         ])
         stackView.axis = .vertical
-        stackView.spacing = 14
+        stackView.spacing = 16
         stackView.distribution = .fillEqually
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -161,7 +161,7 @@ extension LoginVC {
             loginButton.widthAnchor.constraint(equalToConstant: 100),
             
             //MARK: RegisterVcButton
-            registerPage.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 4),
+            registerPage.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 5),
             registerPage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 36),
             view.trailingAnchor.constraint(equalTo: registerPage.trailingAnchor, constant: 32),
             

@@ -28,7 +28,7 @@ class RegisterVC: UIViewController {
         button.contentHorizontalAlignment = .fill
         button.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
         button.setTitle("Back", for: UIControl.State.normal)
-        button.addTarget(self, action: #selector(toLoginVC), for: .touchUpInside)
+        button.addTarget(nil, action: #selector(toLoginVC), for: .touchUpInside)
         return button
     }()
     
@@ -156,7 +156,7 @@ extension RegisterVC {
         
         stackView = UIStackView(arrangedSubviews: [nameContainer, usernameContainer, emailContainer, passwordContainer, registerButton])
         stackView.axis = .vertical
-        stackView.spacing = 14
+        stackView.spacing = 20
         stackView.distribution = .fillEqually
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -194,7 +194,7 @@ extension RegisterVC {
             
             backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 1),
             backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            backButton.heightAnchor.constraint(equalToConstant: 30),
+            backButton.heightAnchor.constraint(equalToConstant: 25),
             backButton.widthAnchor.constraint(equalToConstant: 50),
             
         ])
