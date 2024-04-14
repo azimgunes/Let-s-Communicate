@@ -32,7 +32,7 @@ class AuthenticationView: UIView {
             textField.centerYAnchor.constraint(equalTo: imageView.centerYAnchor),
             textField.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 8),
             trailingAnchor.constraint(equalTo: trailingAnchor, constant: 8),
-
+            
             
         ])
         layer.borderColor = UIColor( #colorLiteral(red: 0.1215686277, green: 0.01176470611, blue: 0.4235294163, alpha: 1)).cgColor

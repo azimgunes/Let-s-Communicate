@@ -41,7 +41,7 @@ class LoginVC: UIViewController {
         return containerView
     }()
     
-
+    
     private var stackView = UIStackView()
     private let loginButton: UIButton = {
         let button = UIButton(type: .custom)
@@ -53,7 +53,7 @@ class LoginVC: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-  
+    
     private lazy var registerPage: UIButton = {
         let button = UIButton(type: .system)
         let attributeTitle = NSMutableAttributedString(string: "Register!", attributes: [.foregroundColor: UIColor(#colorLiteral(red: 0.1215686277, green: 0.01176470611, blue: 0.4235294163, alpha: 1)), .font: UIFont.boldSystemFont(ofSize: 12)])
@@ -77,6 +77,23 @@ class LoginVC: UIViewController {
     }
     
 }
+
+
+//MARK: Selector
+
+extension LoginVC{
+    @objc private func textFieldChanged(_ sender: UITextField){
+        if sender == emailTextField {
+            viewModel.emailTF = sender.text
+        } else {
+            viewModel.passwordTF = sender.text
+        }
+        loginButtonStatus()
+        
+    }
+    
+}
+
 
 //MARK: Helpers
 extension LoginVC {
@@ -104,7 +121,7 @@ extension LoginVC {
         // StackView
         
         stackView = UIStackView(arrangedSubviews: [
-        emailContainer, passwordContainer, loginButton
+            emailContainer, passwordContainer, loginButton
         ])
         stackView.axis = .vertical
         stackView.spacing = 14
@@ -115,13 +132,13 @@ extension LoginVC {
         emailTextField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
     }
- 
+    
     private func Layout(){
         view.addSubview(iconImageView)
         view.addSubview(stackView)
         view.addSubview(loginButton)
         view.addSubview(registerPage)
-      
+        
         
         
         NSLayoutConstraint.activate([
@@ -147,27 +164,11 @@ extension LoginVC {
             registerPage.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 4),
             registerPage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 36),
             view.trailingAnchor.constraint(equalTo: registerPage.trailingAnchor, constant: 32),
-           
             
-
+            
+            
         ])
         
     }
 }
 
-//MARK: Selector
-
-extension LoginVC{
-    @objc private func textFieldChanged(_ sender: UITextField){
-        if sender == emailTextField {
-            viewModel.emailTF = sender.text
-        } else {
-            viewModel.passwordTF = sender.text
-        }
-        loginButtonStatus()
-
-    }
-    
-    
- 
-}
