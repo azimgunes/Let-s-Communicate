@@ -124,7 +124,7 @@ extension LoginVC {
             emailContainer, passwordContainer, loginButton
         ])
         stackView.axis = .vertical
-        stackView.spacing = 16
+        stackView.spacing = 20
         stackView.distribution = .fillEqually
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -144,19 +144,19 @@ extension LoginVC {
         NSLayoutConstraint.activate([
             
             //MARK: iconImageView
-            iconImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
+            iconImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 80),
             iconImageView.heightAnchor.constraint(equalToConstant: 150),
             iconImageView.widthAnchor.constraint(equalToConstant: 150),
             iconImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             //MARK: emailContainer
-            stackView.topAnchor.constraint(equalTo: iconImageView.bottomAnchor, constant: 30),
+            stackView.topAnchor.constraint(equalTo: iconImageView.bottomAnchor, constant: 70),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             emailContainer.heightAnchor.constraint(equalToConstant: 30),
             
             //MARK: loginButton
-            loginButton.topAnchor.constraint(equalTo: passwordContainer.bottomAnchor, constant: 20),
+            loginButton.topAnchor.constraint(equalTo: passwordContainer.bottomAnchor, constant: 30),
             loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 150),
             loginButton.widthAnchor.constraint(equalToConstant: 100),
             

@@ -17,6 +17,7 @@ class RegisterVC: UIViewController {
         button.contentVerticalAlignment = .fill
         button.contentHorizontalAlignment = .fill
         button.setImage(UIImage(systemName: "camera.circle.fill"), for: .normal)
+        button.addTarget(nil, action: #selector(addPhoto), for: .touchUpInside)
         return button
     }()
     
@@ -101,14 +102,18 @@ extension RegisterVC {
         registerButtonStatus()
     }
     
-    @objc func toLoginVC(){
+    @objc private func toLoginVC(_ sender: UIButton){
         let vc = LoginVC()
         vc.modalPresentationStyle = .fullScreen
         vc.modalTransitionStyle = .crossDissolve
         present(vc, animated: true, completion: nil)
     }
-    
 
+    @objc private func addPhoto(_ sender: UIButton){
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        present(picker, animated: true)
+    }
 
 }
 //MARK: Helpers
@@ -156,7 +161,7 @@ extension RegisterVC {
         
         stackView = UIStackView(arrangedSubviews: [nameContainer, usernameContainer, emailContainer, passwordContainer, registerButton])
         stackView.axis = .vertical
-        stackView.spacing = 20
+        stackView.spacing = 25
         stackView.distribution = .fillEqually
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -176,19 +181,19 @@ extension RegisterVC {
         
         
         NSLayoutConstraint.activate([
-            camButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 80),
+            camButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 60),
             camButton.heightAnchor.constraint(equalToConstant: 150),
             camButton.widthAnchor.constraint(equalToConstant: 150),
             camButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             
-            stackView.topAnchor.constraint(equalTo: camButton.bottomAnchor, constant: 30),
+            stackView.topAnchor.constraint(equalTo: camButton.bottomAnchor, constant: 50),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             emailContainer.heightAnchor.constraint(equalToConstant: 30),
             
             
-            registerButton.topAnchor.constraint(equalTo: passwordContainer.bottomAnchor, constant: 20),
+            registerButton.topAnchor.constraint(equalTo: passwordContainer.bottomAnchor, constant: 40),
             registerButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 150),
             registerButton.widthAnchor.constraint(equalToConstant: 100),
             
@@ -201,3 +206,15 @@ extension RegisterVC {
     }
 }
 
+extension RegisterVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[.originalImage] as! UIImage
+        camButton.setImage(image.withRenderingMode(.alwaysOriginal), for: .normal)
+        camButton.layer.cornerRadius = 150/2
+        camButton.clipsToBounds = true
+        camButton.layer.borderColor = UIColor( #colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1)).cgColor
+        camButton.layer.borderWidth = 3
+        camButton.contentMode = .scaleAspectFill
+        dismiss(animated: true)
+    }
+}
