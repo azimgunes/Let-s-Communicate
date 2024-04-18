@@ -13,6 +13,7 @@ import FirebaseFirestore
 class RegisterVC: UIViewController {
     //MARK: Proporties
     
+    
     private var profileImageUpload: UIImage?
     private var viewModel = RegisterViewModel()
     
@@ -128,46 +129,18 @@ extension RegisterVC {
         guard let passwordText = passwordTextField.text else {return}
         guard let profileImage = profileImageUpload else {return}
         
-        let photoName = UUID().uuidString
+        let user = AuthenticationServiceUser(emailText: emailText, nameText: nameText, passwordText: passwordText, usernameText: usernameText)
         
-        guard let profileData = profileImage.jpegData(compressionQuality: 0.5) else {return}
-        
-        let refarence = Storage.storage().reference(withPath: "media/profile_image/\(photoName).png")
-        
-        refarence.putData(profileData) { storageMeta, error in
+        AuthenticationService.Register(withUser: user, image: profileImage) { error in
             if let error = error {
-                print("HATA BURADA: \(error.localizedDescription)")
-            }
-                refarence.downloadURL { url, error in
-                    if let error = error {
-                        print("HATA BURADA: \(error.localizedDescription)")
-                    }
-                    
-                    Auth.auth().createUser(withEmail: emailText, password: passwordText) { result, error in
-                        if let error = error {
-                            print(error.localizedDescription)
-                        }
-                            guard let userUid = result?.user.uid else {return}
-                            let data = [
-                            
-                                "email" : emailText,
-                                "name" : nameText,
-                                "profileImage" : url?.absoluteString,
-                                "username" : usernameText,
-                                "uid" : userUid,
-                            ] as! [String: Any]
-                            Firestore.firestore().collection("User Info").document(userUid).setData(data) { error in
-                                if let error = error {
-                                    print(error.localizedDescription)
-                                }
-                                    print("Successful!")
-                            }
-                        self.dismiss(animated: true)
-                            
-                    }
-                }
+                print("This İs Error: \(error.localizedDescription)")
+                return
             }
         }
+        self.dismiss(animated: true)
+
+        }
+   
 
         
     }
