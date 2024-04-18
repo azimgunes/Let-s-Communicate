@@ -6,9 +6,14 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseStorage
+import FirebaseFirestore
 
 class RegisterVC: UIViewController {
     //MARK: Proporties
+    
+    private var profileImageUpload: UIImage?
     private var viewModel = RegisterViewModel()
     
     private let camButton: UIButton = {
@@ -65,7 +70,7 @@ class RegisterVC: UIViewController {
     
     private var stackView = UIStackView()
     
-    private let registerButton: UIButton = {
+    private lazy var registerButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setTitle("Sign Up", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
@@ -73,6 +78,7 @@ class RegisterVC: UIViewController {
         button.layer.cornerRadius = 10
         button.isEnabled = false
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(createAccount), for: .touchUpInside)
         return button
     }()
 
@@ -114,8 +120,58 @@ extension RegisterVC {
         picker.delegate = self
         present(picker, animated: true)
     }
+    
+    @objc private func createAccount(_ sender: UIButton){
+        guard let emailText = emailTextField.text else {return}
+        guard let nameText = nameTextField.text else {return}
+        guard let usernameText = usernameTextField.text else {return}
+        guard let passwordText = passwordTextField.text else {return}
+        guard let profileImage = profileImageUpload else {return}
+        
+        let photoName = UUID().uuidString
+        
+        guard let profileData = profileImage.jpegData(compressionQuality: 0.5) else {return}
+        
+        let refarence = Storage.storage().reference(withPath: "media/profile_image/\(photoName).png")
+        
+        refarence.putData(profileData) { storageMeta, error in
+            if let error = error {
+                print("HATA BURADA: \(error.localizedDescription)")
+            }
+                refarence.downloadURL { url, error in
+                    if let error = error {
+                        print("HATA BURADA: \(error.localizedDescription)")
+                    }
+                    
+                    Auth.auth().createUser(withEmail: emailText, password: passwordText) { result, error in
+                        if let error = error {
+                            print(error.localizedDescription)
+                        }
+                            guard let userUid = result?.user.uid else {return}
+                            let data = [
+                            
+                                "email" : emailText,
+                                "name" : nameText,
+                                "profileImage" : url?.absoluteString,
+                                "username" : usernameText,
+                                "uid" : userUid,
+                            ] as! [String: Any]
+                            Firestore.firestore().collection("User Info").document(userUid).setData(data) { error in
+                                if let error = error {
+                                    print(error.localizedDescription)
+                                }
+                                    print("Successful!")
+                            }
+                        self.dismiss(animated: true)
+                            
+                    }
+                }
+            }
+        }
 
-}
+        
+    }
+
 //MARK: Helpers
 
 
@@ -209,6 +265,7 @@ extension RegisterVC {
 extension RegisterVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[.originalImage] as! UIImage
+        self.profileImageUpload = image
         camButton.setImage(image.withRenderingMode(.alwaysOriginal), for: .normal)
         camButton.layer.cornerRadius = 150/2
         camButton.clipsToBounds = true
