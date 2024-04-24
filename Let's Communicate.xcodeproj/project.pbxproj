@@ -40,6 +40,7 @@
 		3C52AC132BB5B6440012C1F6 /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C52AC122BB5B6440012C1F6 /* AuthenticationView.swift */; };
 		3C52AC172BB5BBAC0012C1F6 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C52AC162BB5BBAC0012C1F6 /* CustomTextField.swift */; };
 		3C7BE6C12BCBE9480096E5A0 /* RegisterViewModel .swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7BE6C02BCBE9480096E5A0 /* RegisterViewModel .swift */; };
+		3C8263562BD91CC1004068C0 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8263552BD91CC1004068C0 /* HomeVC.swift */; };
 		3CB548312BC1EF7100283BF1 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB548302BC1EF7100283BF1 /* RegisterVC.swift */; };
 		3CBCF4422BB9EDC5007A75F1 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBCF4412BB9EDC5007A75F1 /* LoginViewModel.swift */; };
 		3CFA7BCF2BB217A2000DA8F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFA7BCE2BB217A2000DA8F2 /* AppDelegate.swift */; };
@@ -57,6 +58,7 @@
 		3C52AC122BB5B6440012C1F6 /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
 		3C52AC162BB5BBAC0012C1F6 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		3C7BE6C02BCBE9480096E5A0 /* RegisterViewModel .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RegisterViewModel .swift"; sourceTree = "<group>"; };
+		3C8263552BD91CC1004068C0 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		3CB548302BC1EF7100283BF1 /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		3CBCF4412BB9EDC5007A75F1 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		3CFA7BCB2BB217A2000DA8F2 /* Let's Communicate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Let's Communicate.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,6 +128,7 @@
 			children = (
 				3CFA7BD22BB217A2000DA8F2 /* LoginVC.swift */,
 				3CB548302BC1EF7100283BF1 /* RegisterVC.swift */,
+				3C8263552BD91CC1004068C0 /* HomeVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 				3C4528122BB4AF8D001C7047 /* Extension.swift in Sources */,
 				3C7BE6C12BCBE9480096E5A0 /* RegisterViewModel .swift in Sources */,
 				3C52AC132BB5B6440012C1F6 /* AuthenticationView.swift in Sources */,
+				3C8263562BD91CC1004068C0 /* HomeVC.swift in Sources */,
 				3C196CD32BD1919300C866F8 /* AuthenticationService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

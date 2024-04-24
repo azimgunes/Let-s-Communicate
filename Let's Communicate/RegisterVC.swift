@@ -82,7 +82,7 @@ class RegisterVC: UIViewController {
         button.addTarget(self, action: #selector(createAccount), for: .touchUpInside)
         return button
     }()
-
+    
     
     //MARK: Lifecycle
     
@@ -115,7 +115,7 @@ extension RegisterVC {
         vc.modalTransitionStyle = .crossDissolve
         present(vc, animated: true, completion: nil)
     }
-
+    
     @objc private func addPhoto(_ sender: UIButton){
         let picker = UIImagePickerController()
         picker.delegate = self
@@ -138,12 +138,12 @@ extension RegisterVC {
             }
         }
         self.dismiss(animated: true)
-
-        }
-   
-
         
     }
+    
+    
+    
+}
 
 //MARK: Helpers
 
@@ -154,7 +154,7 @@ extension RegisterVC {
             registerButton.isEnabled = true
             registerButton.backgroundColor = #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)
             camButton.tintColor = #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)
-
+            
             
         }else {
             registerButton.isEnabled = false
@@ -162,7 +162,7 @@ extension RegisterVC {
             camButton.tintColor = #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
         }
         
-    
+        
     }
     
     
