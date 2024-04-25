@@ -15,7 +15,6 @@ class HomeVC: UIViewController {
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         style()
         layout()
         AuthStatus()

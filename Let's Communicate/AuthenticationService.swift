@@ -21,6 +21,10 @@ struct AuthenticationServiceUser {
 }
 
 struct AuthenticationService {
+    static func login(withEmail email: String, password: String, completion: @escaping(AuthDataResult?, Error?) -> Void  ){
+        Auth.auth().signIn(withEmail: email, password: password, completion: completion)
+    }
+    
     static func Register(withUser user: AuthenticationServiceUser, image: UIImage, completion: @escaping(Error?) -> Void){
         let photoName = UUID().uuidString
         

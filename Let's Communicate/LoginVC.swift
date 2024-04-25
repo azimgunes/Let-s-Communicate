@@ -51,6 +51,7 @@ class LoginVC: UIViewController {
         button.layer.cornerRadius = 10
         button.isEnabled = false
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(LogIn), for: .touchUpInside)
         return button
     }()
     
@@ -82,6 +83,18 @@ class LoginVC: UIViewController {
 //MARK: Selector
 
 extension LoginVC{
+    @objc func LogIn(_ sender: UIButton){
+        guard let emailText = emailTextField.text else {return}
+        guard let passwordText = passwordTextField.text else {return}
+        AuthenticationService.login(withEmail: emailText, password: passwordText) { result, error in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+            }
+            self.dismiss(animated: true)
+        }
+    }
+    
+    
     @objc private func textFieldChanged(_ sender: UITextField){
         if sender == emailTextField {
             viewModel.emailTF = sender.text
