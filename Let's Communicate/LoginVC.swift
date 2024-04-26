@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import JGProgressHUD
 
 class LoginVC: UIViewController {
     
@@ -43,7 +44,7 @@ class LoginVC: UIViewController {
     
     
     private var stackView = UIStackView()
-    private let loginButton: UIButton = {
+    private lazy var loginButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setTitle("Log In", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
@@ -51,6 +52,7 @@ class LoginVC: UIViewController {
         button.layer.cornerRadius = 10
         button.isEnabled = false
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(LogIn), for: .touchUpInside)
         return button
     }()
     
@@ -82,6 +84,27 @@ class LoginVC: UIViewController {
 //MARK: Selector
 
 extension LoginVC{
+    @objc func LogIn(_ sender: UIButton){
+        guard let emailText = emailTextField.text else {return}
+        guard let passwordText = passwordTextField.text else {return}
+        self.showHud(showPro: true)
+        AuthenticationService.login(withEmail: emailText, password: passwordText) { result, error in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+                self.showHud(showPro: false)
+                
+                return
+            }
+            self.showHud(showPro: false)
+            let controller = HomeVC()
+            controller.modalPresentationStyle = .fullScreen
+            controller.modalTransitionStyle = .crossDissolve
+            self.present(controller, animated: true, completion: nil)
+        }
+        
+    }
+    
+    
     @objc private func textFieldChanged(_ sender: UITextField){
         if sender == emailTextField {
             viewModel.emailTF = sender.text

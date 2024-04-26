@@ -6,9 +6,15 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseStorage
+import FirebaseFirestore
 
 class RegisterVC: UIViewController {
     //MARK: Proporties
+    
+    
+    private var profileImageUpload: UIImage?
     private var viewModel = RegisterViewModel()
     
     private let camButton: UIButton = {
@@ -65,7 +71,7 @@ class RegisterVC: UIViewController {
     
     private var stackView = UIStackView()
     
-    private let registerButton: UIButton = {
+    private lazy var registerButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setTitle("Sign Up", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
@@ -73,9 +79,10 @@ class RegisterVC: UIViewController {
         button.layer.cornerRadius = 10
         button.isEnabled = false
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(createAccount), for: .touchUpInside)
         return button
     }()
-
+    
     
     //MARK: Lifecycle
     
@@ -108,14 +115,36 @@ extension RegisterVC {
         vc.modalTransitionStyle = .crossDissolve
         present(vc, animated: true, completion: nil)
     }
-
+    
     @objc private func addPhoto(_ sender: UIButton){
         let picker = UIImagePickerController()
         picker.delegate = self
         present(picker, animated: true)
     }
-
+    
+    @objc private func createAccount(_ sender: UIButton){
+        guard let emailText = emailTextField.text else {return}
+        guard let nameText = nameTextField.text else {return}
+        guard let usernameText = usernameTextField.text else {return}
+        guard let passwordText = passwordTextField.text else {return}
+        guard let profileImage = profileImageUpload else {return}
+        
+        let user = AuthenticationServiceUser(emailText: emailText, nameText: nameText, passwordText: passwordText, usernameText: usernameText)
+        
+        AuthenticationService.Register(withUser: user, image: profileImage) { error in
+            if let error = error {
+                print("This İs Error: \(error.localizedDescription)")
+                return
+            }
+        }
+        self.dismiss(animated: true)
+        
+    }
+    
+    
+    
 }
+
 //MARK: Helpers
 
 
@@ -125,7 +154,7 @@ extension RegisterVC {
             registerButton.isEnabled = true
             registerButton.backgroundColor = #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)
             camButton.tintColor = #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)
-
+            
             
         }else {
             registerButton.isEnabled = false
@@ -133,7 +162,7 @@ extension RegisterVC {
             camButton.tintColor = #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
         }
         
-    
+        
     }
     
     
@@ -209,6 +238,7 @@ extension RegisterVC {
 extension RegisterVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[.originalImage] as! UIImage
+        self.profileImageUpload = image
         camButton.setImage(image.withRenderingMode(.alwaysOriginal), for: .normal)
         camButton.layer.cornerRadius = 150/2
         camButton.clipsToBounds = true
