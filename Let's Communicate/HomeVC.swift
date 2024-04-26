@@ -52,5 +52,6 @@ extension HomeVC {
     
     private func signOut(){
         try? Auth.auth().signOut()
+        AuthStatus()
     }
 }

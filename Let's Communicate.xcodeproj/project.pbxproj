@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3C196CD32BD1919300C866F8 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C196CD22BD1919300C866F8 /* AuthenticationService.swift */; };
+		3C3B48982BDC4158009EA582 /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 3C3B48972BDC4158009EA582 /* JGProgressHUD */; };
 		3C4528122BB4AF8D001C7047 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4528112BB4AF8D001C7047 /* Extension.swift */; };
 		3C5166872BCD31E200D0B852 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C5166862BCD31E200D0B852 /* GoogleService-Info.plist */; };
 		3C51668A2BCD34DF00D0B852 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 3C5166892BCD34DF00D0B852 /* FirebaseAnalytics */; };
@@ -84,6 +85,7 @@
 				3C51668C2BCD34DF00D0B852 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
 				3C5166B22BCD34DF00D0B852 /* FirebaseMLModelDownloader in Frameworks */,
 				3C5166A62BCD34DF00D0B852 /* FirebaseFirestoreSwift in Frameworks */,
+				3C3B48982BDC4158009EA582 /* JGProgressHUD in Frameworks */,
 				3C5166922BCD34DF00D0B852 /* FirebaseAppCheck in Frameworks */,
 				3C5166902BCD34DF00D0B852 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				3C5166962BCD34DF00D0B852 /* FirebaseAuth in Frameworks */,
@@ -248,6 +250,7 @@
 				3C5166B92BCD34DF00D0B852 /* FirebaseRemoteConfigSwift */,
 				3C5166BB2BCD34DF00D0B852 /* FirebaseStorage */,
 				3C5166BD2BCD34DF00D0B852 /* FirebaseStorageCombine-Community */,
+				3C3B48972BDC4158009EA582 /* JGProgressHUD */,
 			);
 			productName = "Let's Communicate";
 			productReference = 3CFA7BCB2BB217A2000DA8F2 /* Let's Communicate.app */;
@@ -279,6 +282,7 @@
 			mainGroup = 3CFA7BC22BB217A2000DA8F2;
 			packageReferences = (
 				3C5166882BCD34DF00D0B852 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				3C3B48962BDC4158009EA582 /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
 			);
 			productRefGroup = 3CFA7BCC2BB217A2000DA8F2 /* Products */;
 			projectDirPath = "";
@@ -543,6 +547,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		3C3B48962BDC4158009EA582 /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.0;
+			};
+		};
 		3C5166882BCD34DF00D0B852 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -554,6 +566,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3C3B48972BDC4158009EA582 /* JGProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3C3B48962BDC4158009EA582 /* XCRemoteSwiftPackageReference "JGProgressHUD" */;
+			productName = JGProgressHUD;
+		};
 		3C5166892BCD34DF00D0B852 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3C5166882BCD34DF00D0B852 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import JGProgressHUD
 
 class LoginVC: UIViewController {
     
@@ -43,7 +44,7 @@ class LoginVC: UIViewController {
     
     
     private var stackView = UIStackView()
-    private let loginButton: UIButton = {
+    private lazy var loginButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setTitle("Log In", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
@@ -86,12 +87,21 @@ extension LoginVC{
     @objc func LogIn(_ sender: UIButton){
         guard let emailText = emailTextField.text else {return}
         guard let passwordText = passwordTextField.text else {return}
+        self.showHud(showPro: true)
         AuthenticationService.login(withEmail: emailText, password: passwordText) { result, error in
             if let error = error {
                 print("Error: \(error.localizedDescription)")
+                self.showHud(showPro: false)
+                
+                return
             }
-            self.dismiss(animated: true)
+            self.showHud(showPro: false)
+            let controller = HomeVC()
+            controller.modalPresentationStyle = .fullScreen
+            controller.modalTransitionStyle = .crossDissolve
+            self.present(controller, animated: true, completion: nil)
         }
+        
     }
     
     
