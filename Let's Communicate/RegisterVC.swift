@@ -88,6 +88,7 @@ class RegisterVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyboard()
         style()
         layout()
         
@@ -165,11 +166,23 @@ extension RegisterVC {
         
     }
     
+    @objc private func kbWillShow(){
+        self.view.frame.origin.y = -80
+    }
+    @objc private func kbWillHide(){
+        self.view.frame.origin.y = 0
+        
+    }
     
+    
+    private func configKeyboard(){
+        NotificationCenter.default.addObserver(self, selector: #selector(kbWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(kbWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
     
     private func style(){
         configureGradient()
-        
+        configKeyboard()
         
         //backButton
         
@@ -210,7 +223,7 @@ extension RegisterVC {
         
         
         NSLayoutConstraint.activate([
-            camButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 60),
+            camButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40),
             camButton.heightAnchor.constraint(equalToConstant: 150),
             camButton.widthAnchor.constraint(equalToConstant: 150),
             camButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -248,3 +261,4 @@ extension RegisterVC: UIImagePickerControllerDelegate, UINavigationControllerDel
         dismiss(animated: true)
     }
 }
+

@@ -12,12 +12,18 @@ import FirebaseAuth
 class HomeVC: UIViewController {
     
     //MARK: Properties
+    
+    private var chatsButton: UIBarButtonItem!
+    private var messageScreen: UIBarButtonItem!
+    
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         style()
         layout()
+        //signOut()
         AuthStatus()
+        
     }
     
 }
@@ -28,7 +34,8 @@ class HomeVC: UIViewController {
 extension HomeVC {
     
     private func style(){
-        
+        configureGradient()
+
     }
     
     private func layout(){
@@ -45,7 +52,7 @@ extension HomeVC {
                 
             }
         }else {
-            self.view.backgroundColor = .green
+            self.view.backgroundColor = .white
             
         }
     }

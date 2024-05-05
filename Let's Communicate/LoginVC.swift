@@ -56,6 +56,7 @@ class LoginVC: UIViewController {
         return button
     }()
     
+    
     private lazy var registerPage: UIButton = {
         let button = UIButton(type: .system)
         let attributeTitle = NSMutableAttributedString(string: "Create a New Account! Register!", attributes: [.foregroundColor: UIColor(#colorLiteral(red: 0.1215686277, green: 0.01176470611, blue: 0.4235294163, alpha: 1)), .font: UIFont.boldSystemFont(ofSize: 12)])
@@ -67,6 +68,7 @@ class LoginVC: UIViewController {
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyboard()
         configureGradient()
         Style()
         Layout()
@@ -84,6 +86,8 @@ class LoginVC: UIViewController {
 //MARK: Selector
 
 extension LoginVC{
+    
+    
     @objc func LogIn(_ sender: UIButton){
         guard let emailText = emailTextField.text else {return}
         guard let passwordText = passwordTextField.text else {return}
@@ -131,10 +135,24 @@ extension LoginVC {
             loginButton.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
         }
     }
+    @objc private func kbWillShow(){
+        self.view.frame.origin.y = -40
+        
+        
+    }
+    @objc private func kbWillHide(){
+        self.view.frame.origin.y = 0
+        
+    }
     
+    
+    private func configKeyboard(){
+        NotificationCenter.default.addObserver(self, selector: #selector(kbWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(kbWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
     
     private func Style(){
-        
+        configKeyboard()
         
         self.navigationController?.navigationBar.isHidden = true
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -161,6 +179,7 @@ extension LoginVC {
         view.addSubview(stackView)
         view.addSubview(loginButton)
         view.addSubview(registerPage)
+        
         
         
         

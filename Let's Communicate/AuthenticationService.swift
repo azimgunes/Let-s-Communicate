@@ -11,8 +11,6 @@ import FirebaseStorage
 import FirebaseAuth
 import FirebaseFirestore
 
-
-
 struct AuthenticationServiceUser {
     var emailText: String
     var nameText: String
@@ -37,31 +35,31 @@ struct AuthenticationService {
                 completion(error)
                 return
             }
-                refarence.downloadURL { url, error in
+            refarence.downloadURL { url, error in
+                if let error = error {
+                    completion(error)
+                    return
+                }
+                
+                Auth.auth().createUser(withEmail: user.emailText, password: user.passwordText) { result, error in
                     if let error = error {
                         completion(error)
                         return
                     }
-                    
-                    Auth.auth().createUser(withEmail: user.emailText, password: user.passwordText) { result, error in
-                        if let error = error {
-                            completion(error)
-                            return
-                        }
-                            guard let userUid = result?.user.uid else {return}
-                            let data = [
-                            
-                                "email" : user.emailText,
-                                "name" : user.nameText,
-                                "profileImage" : url?.absoluteString,
-                                "username" : user.usernameText,
-                                "uid" : userUid,
-                            ] as! [String: Any]
-                            Firestore.firestore().collection("User Info").document(userUid).setData(data, completion: completion)
-                        print("Account Created Successfully!")
-                    }
+                    guard let userUid = result?.user.uid else {return}
+                    let data = [
+                        
+                        "email" : user.emailText,
+                        "name" : user.nameText,
+                        "profileImage" : url?.absoluteString,
+                        "username" : user.usernameText,
+                        "uid" : userUid,
+                    ] as! [String: Any]
+                    Firestore.firestore().collection("User Info").document(userUid).setData(data, completion: completion)
+                    print("Account Created Successfully!")
                 }
             }
+        }
     }
-
+    
 }
