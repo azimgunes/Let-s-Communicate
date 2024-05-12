@@ -38,7 +38,7 @@ extension HomeVC {
     private func configureBar(text: String, selector: Selector) -> UIButton {
         let button = UIButton(type: .system)
         button.setTitle(text, for: .normal)
-        button.setTitleColor(UIColor.purple, for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
         button.addTarget(self, action: selector, for: .touchUpInside)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         return button
