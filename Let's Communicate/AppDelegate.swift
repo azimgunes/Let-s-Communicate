@@ -16,11 +16,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         window = UIWindow()
-        window?.rootViewController = UINavigationController(rootViewController: HomeVC())
+        window?.rootViewController = configureNavigationBar(rootViewController: HomeVC())
         window?.makeKeyAndVisible()
         FirebaseApp.configure()
         window = UIWindow()
         return true
+        
+    }
+    
+    private func configureNavigationBar(rootViewController: UIViewController) -> UINavigationController{
+        let controller = UINavigationController(rootViewController: rootViewController)
+        let appearence = UINavigationBarAppearance()
+        appearence.configureWithDefaultBackground()
+        controller.navigationBar.standardAppearance = appearence
+        controller.navigationBar.compactAppearance = appearence
+        controller.navigationBar.scrollEdgeAppearance = appearence
+        controller.navigationBar.compactScrollEdgeAppearance = appearence
+        
+        return controller
         
     }
     
