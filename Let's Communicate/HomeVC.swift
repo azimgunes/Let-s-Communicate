@@ -15,18 +15,22 @@ class HomeVC: UIViewController {
     
     private var chatsButton: UIBarButtonItem!
     private var messageScreen: UIBarButtonItem!
+    private var container = ContainerVC()
+    private let viewControllers: [UIViewController] = [ChatsVC(), MessageVC()]
     
-    private var container = Container()
     
     //MARK: Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         style()
         layout()
         //signOut()
         AuthStatus()
+        navBarColor()
         
     }
+    
     
 }
 
@@ -35,7 +39,9 @@ class HomeVC: UIViewController {
 
 extension HomeVC {
     
+    
     private func configureBar(text: String, selector: Selector) -> UIButton {
+        
         let button = UIButton(type: .system)
         button.setTitle(text, for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
@@ -49,17 +55,16 @@ extension HomeVC {
         chatsButton = UIBarButtonItem(customView: configureBar(text: "Chats", selector: #selector(chatButton)))
         messageScreen = UIBarButtonItem(customView: configureBar(text: "Message", selector: #selector(messageButton)))
         
-        
-        //self.navigationItem.leftBarButtonItems = [chatsButton, messageScreen]
-        
         self.navigationItem.leftBarButtonItems = [chatsButton]
         
         self.navigationItem.rightBarButtonItems = [messageScreen]
         
+        
+        
         //Container
         
         configureContainer()
-
+        
     }
     
     private func layout(){
@@ -72,7 +77,7 @@ extension HomeVC {
         view.addSubview(containerView)
         
         NSLayoutConstraint.activate([
-    
+            
             containerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -109,18 +114,24 @@ extension HomeVC {
 extension HomeVC{
     
     @objc private func chatButton(){
-        
+        if self.container.children.first == ChatsVC() {return}
+        self.container.add(viewControllers[0])
+        viewControllers[1].remove()
     }
     
     @objc private func messageButton(){
-        
+        if self.container.children.first == ChatsVC() {return}
+        self.container.add(viewControllers[1])
+        viewControllers[0].remove()
     }
+    
+    @objc private func navBarColor(){
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.compactAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+    }
+    
 }
 
-
-class Container: UIViewController{
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        configureGradient()
-    }
-}

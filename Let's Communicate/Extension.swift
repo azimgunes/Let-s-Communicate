@@ -34,4 +34,19 @@ extension UIViewController {
             
         }
     }
+    
+    func add(_ child: UIViewController){
+        addChild(child)
+        self.view.addSubview(child.view)
+        child.didMove(toParent: self)
+        
+    }
+    
+    func remove(){
+    willMove(toParent: self)
+        self.view.removeFromSuperview()
+        removeFromParent()
+        
+    }
+    
 }

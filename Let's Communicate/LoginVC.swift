@@ -100,10 +100,8 @@ extension LoginVC{
                 return
             }
             self.showHud(showPro: false)
-            let controller = HomeVC()
-            controller.modalPresentationStyle = .fullScreen
-            controller.modalTransitionStyle = .crossDissolve
-            self.present(controller, animated: true, completion: nil)
+            self.dismiss(animated: true
+            )
         }
         
     }
