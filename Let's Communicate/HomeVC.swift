@@ -25,7 +25,7 @@ class HomeVC: UIViewController {
         super.viewDidLoad()
         style()
         layout()
-        //signOut()
+    //signOut()
         AuthStatus()
         navBarColor()
         
@@ -64,7 +64,7 @@ extension HomeVC {
         //Container
         
         configureContainer()
-        
+        chatButton()
     }
     
     private func layout(){
