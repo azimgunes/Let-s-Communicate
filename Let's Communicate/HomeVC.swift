@@ -115,12 +115,16 @@ extension HomeVC{
     
     @objc private func chatButton(){
         if self.container.children.first == ChatsVC() {return}
+        self.messageScreen.customView?.alpha = 0.5
+        self.chatsButton.customView?.alpha = 1
         self.container.add(viewControllers[0])
         viewControllers[1].remove()
     }
     
     @objc private func messageButton(){
         if self.container.children.first == ChatsVC() {return}
+        self.messageScreen.customView?.alpha = 1
+        self.chatsButton.customView?.alpha = 0.5
         self.container.add(viewControllers[1])
         viewControllers[0].remove()
     }

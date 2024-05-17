@@ -41,6 +41,7 @@
 		3C52AC132BB5B6440012C1F6 /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C52AC122BB5B6440012C1F6 /* AuthenticationView.swift */; };
 		3C52AC172BB5BBAC0012C1F6 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C52AC162BB5BBAC0012C1F6 /* CustomTextField.swift */; };
 		3C7BE6C12BCBE9480096E5A0 /* RegisterViewModel .swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7BE6C02BCBE9480096E5A0 /* RegisterViewModel .swift */; };
+		3C7C3F8F2BF76E7C00E5752D /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7C3F8E2BF76E7C00E5752D /* UserCell.swift */; };
 		3C8263562BD91CC1004068C0 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8263552BD91CC1004068C0 /* HomeVC.swift */; };
 		3CB548312BC1EF7100283BF1 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB548302BC1EF7100283BF1 /* RegisterVC.swift */; };
 		3CBCF4422BB9EDC5007A75F1 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBCF4412BB9EDC5007A75F1 /* LoginViewModel.swift */; };
@@ -62,6 +63,7 @@
 		3C52AC122BB5B6440012C1F6 /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
 		3C52AC162BB5BBAC0012C1F6 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		3C7BE6C02BCBE9480096E5A0 /* RegisterViewModel .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RegisterViewModel .swift"; sourceTree = "<group>"; };
+		3C7C3F8E2BF76E7C00E5752D /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		3C8263552BD91CC1004068C0 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		3CB548302BC1EF7100283BF1 /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		3CBCF4412BB9EDC5007A75F1 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 			children = (
 				3C52AC122BB5B6440012C1F6 /* AuthenticationView.swift */,
 				3C52AC162BB5BBAC0012C1F6 /* CustomTextField.swift */,
+				3C7C3F8E2BF76E7C00E5752D /* UserCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 				3CC7CCF12BF10FE30020EB6E /* ChatsVC.swift in Sources */,
 				3CBCF4422BB9EDC5007A75F1 /* LoginViewModel.swift in Sources */,
 				3CFA7BD12BB217A2000DA8F2 /* SceneDelegate.swift in Sources */,
+				3C7C3F8F2BF76E7C00E5752D /* UserCell.swift in Sources */,
 				3CB548312BC1EF7100283BF1 /* RegisterVC.swift in Sources */,
 				3C4528122BB4AF8D001C7047 /* Extension.swift in Sources */,
 				3C7BE6C12BCBE9480096E5A0 /* RegisterViewModel .swift in Sources */,

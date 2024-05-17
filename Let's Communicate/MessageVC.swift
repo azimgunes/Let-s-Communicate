@@ -39,12 +39,12 @@ extension MessageVC{
         //Table View
         tableView.delegate =  self
         tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseId)
+        tableView.register(UserCell.self, forCellReuseIdentifier: reuseId)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .clear
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 30    
-    
+        tableView.rowHeight = 80
+        tableView.separatorStyle = .none
         
     }
     private func layout(){
@@ -53,7 +53,7 @@ extension MessageVC{
         view.addSubview(tableView)
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -67,17 +67,18 @@ extension MessageVC{
 //MARK: Table View
 extension MessageVC: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseId, for: indexPath)
-        cell.backgroundColor = .white
-        cell.layer.cornerRadius = 10
-        cell.layer.borderWidth = 2
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseId, for: indexPath) as! UserCell
+        cell.backgroundColor = .clear
+        cell.layer.cornerRadius = 40
+        cell.layer.borderWidth = 1
         cell.layer.borderColor = UIColor(#colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)).cgColor
         cell.selectionStyle = .none
+        
 
         return cell
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 1
     }
     
 
