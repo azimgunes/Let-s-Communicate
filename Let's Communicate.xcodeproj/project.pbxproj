@@ -48,6 +48,8 @@
 		3CC7CCEF2BF10FAB0020EB6E /* ContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC7CCEE2BF10FAB0020EB6E /* ContainerVC.swift */; };
 		3CC7CCF12BF10FE30020EB6E /* ChatsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC7CCF02BF10FE30020EB6E /* ChatsVC.swift */; };
 		3CC7CCF32BF1113A0020EB6E /* MessageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC7CCF22BF1113A0020EB6E /* MessageVC.swift */; };
+		3CCB6A352BF927FA00343FDC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB6A342BF927FA00343FDC /* User.swift */; };
+		3CCB6A382BF9298D00343FDC /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB6A372BF9298D00343FDC /* Service.swift */; };
 		3CFA7BCF2BB217A2000DA8F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFA7BCE2BB217A2000DA8F2 /* AppDelegate.swift */; };
 		3CFA7BD12BB217A2000DA8F2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFA7BD02BB217A2000DA8F2 /* SceneDelegate.swift */; };
 		3CFA7BD32BB217A2000DA8F2 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFA7BD22BB217A2000DA8F2 /* LoginVC.swift */; };
@@ -70,6 +72,8 @@
 		3CC7CCEE2BF10FAB0020EB6E /* ContainerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerVC.swift; sourceTree = "<group>"; };
 		3CC7CCF02BF10FE30020EB6E /* ChatsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsVC.swift; sourceTree = "<group>"; };
 		3CC7CCF22BF1113A0020EB6E /* MessageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageVC.swift; sourceTree = "<group>"; };
+		3CCB6A342BF927FA00343FDC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		3CCB6A372BF9298D00343FDC /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		3CFA7BCB2BB217A2000DA8F2 /* Let's Communicate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Let's Communicate.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CFA7BCE2BB217A2000DA8F2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3CFA7BD02BB217A2000DA8F2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -168,6 +172,7 @@
 		3C45280E2BB4A7FD001C7047 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3CCB6A342BF927FA00343FDC /* User.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -176,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				3C196CD22BD1919300C866F8 /* AuthenticationService.swift */,
+				3CCB6A372BF9298D00343FDC /* Service.swift */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -328,12 +334,14 @@
 				3CFA7BD32BB217A2000DA8F2 /* LoginVC.swift in Sources */,
 				3CFA7BCF2BB217A2000DA8F2 /* AppDelegate.swift in Sources */,
 				3C52AC172BB5BBAC0012C1F6 /* CustomTextField.swift in Sources */,
+				3CCB6A352BF927FA00343FDC /* User.swift in Sources */,
 				3CC7CCF32BF1113A0020EB6E /* MessageVC.swift in Sources */,
 				3CC7CCF12BF10FE30020EB6E /* ChatsVC.swift in Sources */,
 				3CBCF4422BB9EDC5007A75F1 /* LoginViewModel.swift in Sources */,
 				3CFA7BD12BB217A2000DA8F2 /* SceneDelegate.swift in Sources */,
 				3C7C3F8F2BF76E7C00E5752D /* UserCell.swift in Sources */,
 				3CB548312BC1EF7100283BF1 /* RegisterVC.swift in Sources */,
+				3CCB6A382BF9298D00343FDC /* Service.swift in Sources */,
 				3C4528122BB4AF8D001C7047 /* Extension.swift in Sources */,
 				3C7BE6C12BCBE9480096E5A0 /* RegisterViewModel .swift in Sources */,
 				3C52AC132BB5B6440012C1F6 /* AuthenticationView.swift in Sources */,

@@ -29,6 +29,14 @@ class MessageVC: UIViewController {
         layout()
     
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        Service.fetchData { users in
+            users.forEach { user in
+                print(user.name)
+            }
+        }
+    }
 }
 
 
@@ -53,7 +61,7 @@ extension MessageVC{
         view.addSubview(tableView)
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -73,6 +81,7 @@ extension MessageVC: UITableViewDataSource, UITableViewDelegate{
         cell.layer.borderWidth = 1
         cell.layer.borderColor = UIColor(#colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)).cgColor
         cell.selectionStyle = .none
+        
         
 
         return cell
