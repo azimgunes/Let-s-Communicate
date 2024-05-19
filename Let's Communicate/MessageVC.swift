@@ -17,7 +17,7 @@ class MessageVC: UIViewController {
     
     //MARK: Properties
     private let tableView = UITableView()
-    
+    private var users = [User]()
     
     //MARK: Lifecycle
     
@@ -32,9 +32,8 @@ class MessageVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         Service.fetchData { users in
-            users.forEach { user in
-                print(user.name)
-            }
+            self.users = users
+            self.tableView.reloadData()
         }
     }
 }
@@ -52,7 +51,8 @@ extension MessageVC{
         tableView.backgroundColor = .clear
         tableView.rowHeight = UITableView.automaticDimension
         tableView.rowHeight = 80
-        tableView.separatorStyle = .none
+        tableView.separatorStyle = .singleLine
+        tableView.separatorColor =  #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
         
     }
     private func layout(){
@@ -77,17 +77,13 @@ extension MessageVC: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseId, for: indexPath) as! UserCell
         cell.backgroundColor = .clear
-        cell.layer.cornerRadius = 40
-        cell.layer.borderWidth = 1
-        cell.layer.borderColor = UIColor(#colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)).cgColor
         cell.selectionStyle = .none
-        
-        
-
+        cell.separatorInset = UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5)
+        cell.user = users[indexPath.row]
         return cell
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return users.count
     }
     
 

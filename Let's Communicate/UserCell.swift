@@ -6,10 +6,17 @@
 //
 
 import UIKit
+import SDWebImage
 
 class UserCell: UITableViewCell {
     //MARK: Proporties
     
+    var user: User?{
+        didSet{
+            configureUser()
+            
+        }
+    }
     private let profileImage: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
@@ -18,23 +25,23 @@ class UserCell: UITableViewCell {
         return imageView
     }()
     
-    private let title: UILabel = {
+    private let nameLabel: UILabel = {
         let label = UILabel()
      
         label.font = UIFont.boldSystemFont(ofSize: 16)
-        label.text = "Title"
-        label.textColor =  #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
+        label.text = "Name"
+        label.textColor =   #colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1)
         label.translatesAutoresizingMaskIntoConstraints = false
  
         return label
     }()
     
-    private let subtTitle: UILabel = {
+    private let usernameLabel: UILabel = {
         let label = UILabel()
       
         label.font = UIFont.systemFont(ofSize: 16)
-        label.text = "Sub Title"
-        label.textColor = .black
+        label.text = "Username"
+        label.textColor = UIColor.lightGray
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -67,8 +74,8 @@ extension UserCell{
         //stackView
         
         
-        stackView.addArrangedSubview(title)
-        stackView.addArrangedSubview(subtTitle)
+        stackView.addArrangedSubview(nameLabel)
+        stackView.addArrangedSubview(usernameLabel)
         stackView.axis  = NSLayoutConstraint.Axis.vertical
         stackView.spacing = 2
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -89,11 +96,18 @@ extension UserCell{
             
             //Stack View
             stackView.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 6),
-            trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: 4),
+            trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: 8),
             stackView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
-            bottomAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 12),
+            bottomAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 16),
                                     
         ])
         
+    }
+    
+    private func configureUser(){
+        guard let user = user else {return}
+        self.nameLabel.text = user.name
+        self.usernameLabel.text = user.username
+        self.profileImage.sd_setImage(with: URL(string: user.profileImage))
     }
 }
