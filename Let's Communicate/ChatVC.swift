@@ -9,6 +9,8 @@ import UIKit
 
 
 class ChatVC: UICollectionViewController {
+    
+    private lazy var chatInputView = ChatInputView(frame: .init(x: 0, y: 0, width: view.frame.width, height: view.frame.height*0.08))
 
     private let user: User
     init(user: User) {
@@ -22,11 +24,22 @@ class ChatVC: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.tintColor = .white
+        collectionView.backgroundColor = .white
         print("Clicked \(user.name).")
-        collectionView.backgroundColor =  #colorLiteral(red: 0.7254902124, green: 0.4784313738, blue: 0.09803921729, alpha: 1)
+        
 
       
     }
+    
+    override var inputAccessoryView: UIView?{
+        get{return chatInputView}
+    }
 
+    override var canBecomeFirstResponder: Bool{
+        return true
+    }
 
 }
+
+
