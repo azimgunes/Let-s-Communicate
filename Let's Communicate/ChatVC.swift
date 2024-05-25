@@ -10,7 +10,7 @@ import UIKit
 
 class ChatVC: UICollectionViewController {
     
-    private lazy var chatInputView = ChatInputView(frame: .init(x: 0, y: 0, width: view.frame.width, height: view.frame.height*0.08))
+    private lazy var chatInputView = ChatInputView(frame: .init(x: 0, y: 0, width: view.frame.width, height: view.frame.height*0.09))
 
     private let user: User
     init(user: User) {

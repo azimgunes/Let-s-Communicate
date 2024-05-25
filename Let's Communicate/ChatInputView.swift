@@ -16,15 +16,22 @@ class ChatInputView: UIView{
         let textView = UITextView()
         textView.backgroundColor = .white
         textView.textColor =  #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
-        
         return textView
         
     }()
     
     private let sendButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Send", for: .normal)
+        button.setImage(UIImage(named: "sendbutton2"), for: .normal)
         return button
+        
+    }()
+    
+    private let placeholderLabel: UILabel = {
+       let label = UILabel()
+        label.text = "Text Here..."
+        label.textColor =  #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
+        return label
         
     }()
     //MARK: Lifecycle
@@ -51,28 +58,50 @@ class ChatInputView: UIView{
 extension ChatInputView {
     
     private func style(){
+        autoresizingMask = .flexibleHeight
         textView.translatesAutoresizingMaskIntoConstraints = false
-        sendButton.translatesAutoresizingMaskIntoConstraints = false
+        textView.layer.cornerRadius = 15
+        clipsToBounds = true
+        textView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMinYCorner]
         
+        NotificationCenter.default.addObserver(self, selector: #selector(placeholderHiding), name: UITextView.textDidChangeNotification, object: nil)
+        
+        sendButton.translatesAutoresizingMaskIntoConstraints = false
+        placeholderLabel.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private func layout(){
         
         addSubview(textView)
         addSubview(sendButton)
+        addSubview(placeholderLabel)
         
         NSLayoutConstraint.activate([
             textView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
-            textView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-            textView.trailingAnchor.constraint(equalTo: sendButton.leadingAnchor, constant: -8),
-            bottomAnchor.constraint(equalTo: textView.bottomAnchor, constant: 10),
+            textView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
+            textView.trailingAnchor.constraint(equalTo: sendButton.leadingAnchor, constant: -4),
+            bottomAnchor.constraint(equalTo: textView.bottomAnchor, constant: 20),
         
-            sendButton.topAnchor.constraint(equalTo: topAnchor, constant: 2),
-            trailingAnchor.constraint(equalTo: sendButton.trailingAnchor, constant: 8),
-            sendButton.heightAnchor.constraint(equalToConstant: 60),
-            sendButton.widthAnchor.constraint(equalToConstant: 60),
+            sendButton.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            trailingAnchor.constraint(equalTo: sendButton.trailingAnchor, constant: 16),
+            sendButton.heightAnchor.constraint(equalToConstant: 40),
+            sendButton.widthAnchor.constraint(equalToConstant: 40),
+            
+            placeholderLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+            placeholderLabel.leadingAnchor.constraint(equalTo: textView.leadingAnchor, constant: 8),
+            placeholderLabel.bottomAnchor.constraint(equalTo: textView.bottomAnchor, constant: -20),
+            placeholderLabel.trailingAnchor.constraint(equalTo: textView.trailingAnchor),
          
             
         ])
+    }
+}
+
+
+//MARK: Selector
+
+extension ChatInputView {
+    @objc private func placeholderHiding(){
+        placeholderLabel.isHidden = !textView.text.isEmpty
     }
 }
