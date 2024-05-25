@@ -10,12 +10,17 @@ import Firebase
 import FirebaseAuth
 
 private let reuseId = "userCell"
+protocol messageVCProtocol: AnyObject {
+    func toChatVC(user: User)
+}
 
 class MessageVC: UIViewController {
     
     
     
     //MARK: Properties
+    
+    weak var delegate: messageVCProtocol?
     private let tableView = UITableView()
     private var users = [User]()
     
@@ -84,6 +89,10 @@ extension MessageVC: UITableViewDataSource, UITableViewDelegate{
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return users.count
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.delegate?.toChatVC(user: users[indexPath.row])
     }
     
 

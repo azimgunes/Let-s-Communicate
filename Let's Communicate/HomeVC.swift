@@ -16,7 +16,8 @@ class HomeVC: UIViewController {
     private var chatsButton: UIBarButtonItem!
     private var messageScreen: UIBarButtonItem!
     private var container = ContainerVC()
-    private let viewControllers: [UIViewController] = [ChatsVC(), MessageVC()]
+    private let messageVC = MessageVC()
+    private lazy var viewControllers: [UIViewController] = [ChatsVC(), messageVC]
     
     
     //MARK: Lifecycle
@@ -29,6 +30,11 @@ class HomeVC: UIViewController {
         AuthStatus()
         navBarColor()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        chatButton()
     }
     
     
@@ -58,6 +64,7 @@ extension HomeVC {
         self.navigationItem.leftBarButtonItems = [chatsButton]
         
         self.navigationItem.rightBarButtonItems = [messageScreen]
+        self.messageVC.delegate = self
         
         
         
@@ -139,3 +146,11 @@ extension HomeVC{
     
 }
 
+extension HomeVC: messageVCProtocol{
+    func toChatVC(user: User) {
+        let controller = ChatVC(user: user)
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    
+}
