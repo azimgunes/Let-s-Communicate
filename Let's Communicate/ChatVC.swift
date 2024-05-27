@@ -10,9 +10,18 @@ import UIKit
 
 class ChatVC: UICollectionViewController {
     
+    //MARK: Proporties
+    
+    
+    
+    private let reuseId = "ChatCell"
+    
     private lazy var chatInputView = ChatInputView(frame: .init(x: 0, y: 0, width: view.frame.width, height: view.frame.height*0.09))
 
     private let user: User
+    
+    //MARK: Lifecycle
+    
     init(user: User) {
         self.user = user
         super.init(collectionViewLayout: UICollectionViewFlowLayout())
@@ -27,6 +36,8 @@ class ChatVC: UICollectionViewController {
         self.navigationController?.navigationBar.tintColor = .white
         collectionView.backgroundColor = .white
         print("Clicked \(user.name).")
+        style()
+        layout()
         
 
       
@@ -42,4 +53,41 @@ class ChatVC: UICollectionViewController {
 
 }
 
+//MARK: Helpers
 
+extension ChatVC{
+    private func style(){
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseId)
+        
+    }
+    
+    private func layout(){
+        
+    }
+    
+}
+
+//MARK: UICV Delegate/Data Source
+extension ChatVC{
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseId, for: indexPath)
+        cell.backgroundColor = .orange
+        cell.layer.cornerRadius = 15
+        return cell
+    }
+}
+
+
+extension ChatVC: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return .init(top: 16, left: 0, bottom: 16, right: 0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return .init(width: view.frame.width*0.95, height: 60)
+    }
+}
