@@ -57,7 +57,7 @@ class ChatVC: UICollectionViewController {
 
 extension ChatVC{
     private func style(){
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseId)
+        collectionView.register(MessageCell.self, forCellWithReuseIdentifier: reuseId)
         
     }
     
@@ -74,9 +74,7 @@ extension ChatVC{
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseId, for: indexPath)
-        cell.backgroundColor = .orange
-        cell.layer.cornerRadius = 15
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseId, for: indexPath) as! MessageCell
         return cell
     }
 }
@@ -88,6 +86,6 @@ extension ChatVC: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: view.frame.width*0.95, height: 60)
+        return .init(width: view.frame.width, height: 90)
     }
 }
