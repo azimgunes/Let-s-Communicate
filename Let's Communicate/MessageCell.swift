@@ -29,6 +29,7 @@ class MessageCell: UICollectionViewCell{
        let textView = UITextView()
         textView.text = "Message"
         textView.textColor = .white
+        textView.font = UIFont.systemFont(ofSize: 16)
         textView.backgroundColor = .clear
         textView.isScrollEnabled = false
         textView.isEditable = false
@@ -80,6 +81,7 @@ extension MessageCell{
             messageContainer.topAnchor.constraint(equalTo: topAnchor, constant: 32),
             messageContainer.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 8),
             messageContainer.widthAnchor.constraint(lessThanOrEqualToConstant: 300),
+            messageContainer.heightAnchor.constraint(lessThanOrEqualToConstant: 300),
             
             messageText.topAnchor.constraint(equalTo: messageContainer.topAnchor),
             messageText.leadingAnchor.constraint(equalTo: messageContainer.leadingAnchor),
