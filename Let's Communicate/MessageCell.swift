@@ -50,9 +50,10 @@ class MessageCell: UICollectionViewCell{
 extension MessageCell{
     private func style(){
         
-        backgroundColor = .brown
+        backgroundColor = .clear
         profileImage.translatesAutoresizingMaskIntoConstraints = false
-        profileImage.layer.cornerRadius = 30
+        profileImage.layer.cornerRadius = 15
+        profileImage.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner]
         
         messageContainer.translatesAutoresizingMaskIntoConstraints = false
         messageContainer.layer.cornerRadius = 15
@@ -71,12 +72,12 @@ extension MessageCell{
         NSLayoutConstraint.activate([
             profileImage.widthAnchor.constraint(equalToConstant: 60),
             profileImage.heightAnchor.constraint(equalToConstant: 60),
-            bottomAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: -8),
+            bottomAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 8),
             profileImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 4),
             
             
             
-            messageContainer.topAnchor.constraint(equalTo: topAnchor, constant: 4),
+            messageContainer.topAnchor.constraint(equalTo: topAnchor, constant: 32),
             messageContainer.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 8),
             messageContainer.widthAnchor.constraint(lessThanOrEqualToConstant: 300),
             
