@@ -26,7 +26,7 @@ class MessageCell: UICollectionViewCell{
     }()
     
     private let messageText: UITextView = {
-       let textView = UITextView()
+        let textView = UITextView()
         textView.text = "Message"
         textView.textColor = .white
         textView.font = UIFont.systemFont(ofSize: 16)
@@ -61,7 +61,7 @@ extension MessageCell{
         messageContainer.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner]
         
         messageText.translatesAutoresizingMaskIntoConstraints = false
-    
+        
         
     }
     

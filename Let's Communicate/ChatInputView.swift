@@ -7,12 +7,17 @@
 
 import UIKit
 
+
+protocol ChatInputViewProtocol: AnyObject{
+    func sendMessage(_ chatInputView: ChatInputView, message: String)
+    
+}
+
 class ChatInputView: UIView{
     
-    
+    weak var delegate: ChatInputViewProtocol?
     //MARK: Proporties
     private let textView: UITextView = {
-        
         let textView = UITextView()
         textView.backgroundColor = .white
         textView.textColor =  #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
@@ -20,15 +25,16 @@ class ChatInputView: UIView{
         
     }()
     
-    private let sendButton: UIButton = {
+    private lazy var sendButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "sendbutton2"), for: .normal)
+        button.addTarget(self, action: #selector(sendMessage), for: .touchUpInside)
         return button
         
     }()
     
     private let placeholderLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.text = "Text Here..."
         label.textColor =  #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
         return label
@@ -81,7 +87,7 @@ extension ChatInputView {
             textView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
             textView.trailingAnchor.constraint(equalTo: sendButton.leadingAnchor, constant: -4),
             bottomAnchor.constraint(equalTo: textView.bottomAnchor, constant: 20),
-        
+            
             sendButton.topAnchor.constraint(equalTo: topAnchor, constant: 10),
             trailingAnchor.constraint(equalTo: sendButton.trailingAnchor, constant: 16),
             sendButton.heightAnchor.constraint(equalToConstant: 40),
@@ -91,7 +97,7 @@ extension ChatInputView {
             placeholderLabel.leadingAnchor.constraint(equalTo: textView.leadingAnchor, constant: 8),
             placeholderLabel.bottomAnchor.constraint(equalTo: textView.bottomAnchor, constant: -20),
             placeholderLabel.trailingAnchor.constraint(equalTo: textView.trailingAnchor),
-         
+            
             
         ])
     }
@@ -103,5 +109,13 @@ extension ChatInputView {
 extension ChatInputView {
     @objc private func placeholderHiding(){
         placeholderLabel.isHidden = !textView.text.isEmpty
+    }
+    
+    
+    @objc private func sendMessage(_ sender: UIButton){
+        
+        guard let message = textView.text else { return }
+        self.delegate?.sendMessage(self, message: message)
+        
     }
 }

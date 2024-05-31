@@ -17,7 +17,7 @@ class ChatVC: UICollectionViewController {
     private let reuseId = "ChatCell"
     
     private lazy var chatInputView = ChatInputView(frame: .init(x: 0, y: 0, width: view.frame.width, height: view.frame.height*0.09))
-
+    
     private let user: User
     
     //MARK: Lifecycle
@@ -39,18 +39,18 @@ class ChatVC: UICollectionViewController {
         style()
         layout()
         
-
-      
+        
+        
     }
     
     override var inputAccessoryView: UIView?{
         get{return chatInputView}
     }
-
+    
     override var canBecomeFirstResponder: Bool{
         return true
     }
-
+    
 }
 
 //MARK: Helpers
@@ -58,6 +58,8 @@ class ChatVC: UICollectionViewController {
 extension ChatVC{
     private func style(){
         collectionView.register(MessageCell.self, forCellWithReuseIdentifier: reuseId)
+        chatInputView.delegate = self
+        
         
     }
     
@@ -88,4 +90,23 @@ extension ChatVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return .init(width: view.frame.width, height: 90)
     }
+}
+
+
+//MARK: ChatInputViewProtocol
+
+extension ChatVC: ChatInputViewProtocol{
+    func sendMessage(_ chatInputView: ChatInputView, message: String) {
+        
+        
+        Service.sendMessagetoData(message: message, toUser: user) { error in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+                return
+            }
+        }
+        
+    }
+    
+    
 }

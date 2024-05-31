@@ -8,7 +8,7 @@
 import Foundation
 import Firebase
 import FirebaseFirestore
-
+import FirebaseAuth
 
 struct Service {
     static func fetchData(completion: @escaping([User]) -> Void){
@@ -22,5 +22,24 @@ struct Service {
                 completion(users)
             }
         }
+        
+        
+    }
+    
+    static func sendMessagetoData(message: String, toUser: User, completion: @escaping(Error?) -> Void ){
+        guard let currentUid = Auth.auth().currentUser?.uid else { return }
+        
+        let data = [
+            "text": message,
+            "fromId": currentUid,
+            "toId": toUser.uid,
+            "timestamp" : Timestamp(date: Date())
+        ] as [String: Any]
+        
+        Firestore.firestore().collection("messages").document(currentUid).collection(toUser.uid).addDocument(data: data) {
+            error in
+            Firestore.firestore().collection("messages").document(toUser.uid).collection(currentUid).addDocument(data: data, completion: completion)
+        }
+        
     }
 }

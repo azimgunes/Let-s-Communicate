@@ -26,13 +26,13 @@ class MessageVC: UIViewController {
     
     //MARK: Lifecycle
     
- 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         style()
         layout()
-    
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -62,7 +62,7 @@ extension MessageVC{
     }
     private func layout(){
         
-
+        
         view.addSubview(tableView)
         
         NSLayoutConstraint.activate([
@@ -95,6 +95,6 @@ extension MessageVC: UITableViewDataSource, UITableViewDelegate{
         self.delegate?.toChatVC(user: users[indexPath.row])
     }
     
-
-        
+    
+    
 }
