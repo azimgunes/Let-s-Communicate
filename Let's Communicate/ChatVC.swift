@@ -6,13 +6,15 @@
 //
 
 import UIKit
+import FirebaseFirestore
+import FirebaseAuth
 
 
 class ChatVC: UICollectionViewController {
     
     //MARK: Proporties
     
-    
+    var messages = [Message]()
     
     private let reuseId = "ChatCell"
     
@@ -38,6 +40,7 @@ class ChatVC: UICollectionViewController {
         print("Clicked \(user.name).")
         style()
         layout()
+        fetchMessages()
         
         
         
@@ -52,6 +55,10 @@ class ChatVC: UICollectionViewController {
     }
     
 }
+
+    //MARK: Service
+
+
 
 //MARK: Helpers
 
@@ -72,7 +79,7 @@ extension ChatVC{
 //MARK: UICV Delegate/Data Source
 extension ChatVC{
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return self.messages.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -108,6 +115,12 @@ extension ChatVC: ChatInputViewProtocol{
         chatInputView.clearTextView()
         
     }
-    
+    private func fetchMessages(){
+        Service.fetchMessages(user: user) { messages in
+            self.messages = messages
+            self.collectionView?.reloadData()
+        }
+    }
+
     
 }
