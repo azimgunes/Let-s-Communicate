@@ -105,6 +105,7 @@ extension ChatVC: ChatInputViewProtocol{
                 return
             }
         }
+        chatInputView.clearTextView()
         
     }
     

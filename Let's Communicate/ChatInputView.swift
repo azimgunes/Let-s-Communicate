@@ -101,6 +101,10 @@ extension ChatInputView {
             
         ])
     }
+    func clearTextView(){
+        textView.text = nil
+        placeholderLabel.isHidden = false
+    }
 }
 
 
