@@ -9,6 +9,13 @@ import UIKit
 
 class MessageCell: UICollectionViewCell{
     
+    var msContainerViewLeft: NSLayoutConstraint!
+    var msContainerViewRight: NSLayoutConstraint!
+
+    var message: Message?{
+        didSet{configure()}
+    }
+    
     //MARK: Proporties
     private let profileImage: UIImageView = {
         let imageView = UIImageView()
@@ -79,7 +86,6 @@ extension MessageCell{
             
             
             messageContainer.topAnchor.constraint(equalTo: topAnchor, constant: 32),
-            messageContainer.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 8),
             messageContainer.widthAnchor.constraint(lessThanOrEqualToConstant: 300),
             messageContainer.heightAnchor.constraint(lessThanOrEqualToConstant: 300),
             
@@ -89,9 +95,21 @@ extension MessageCell{
             messageText.bottomAnchor.constraint(equalTo: messageContainer.bottomAnchor),
             
         ])
+        self.msContainerViewLeft = messageContainer.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 8)
+        self.msContainerViewLeft.isActive = false
+        self.msContainerViewRight = messageContainer.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
+        self.msContainerViewRight.isActive = false
         
     }
-    
+    private func configure(){
+        guard let message = self.message else { return  }
+        let viewModel = MessageViewModel(message: message)
+        messageText.text = message.text
+        messageContainer.backgroundColor = viewModel.messageBC
+        msContainerViewRight.isActive = viewModel.currentUserActive
+        msContainerViewLeft.isActive = !viewModel.currentUserActive
+        profileImage.isHidden = viewModel.currentUserActive
+    }
     
     
 }
