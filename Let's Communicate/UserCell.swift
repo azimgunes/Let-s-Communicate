@@ -27,18 +27,18 @@ class UserCell: UITableViewCell {
     
     private let nameLabel: UILabel = {
         let label = UILabel()
-     
+        
         label.font = UIFont.boldSystemFont(ofSize: 16)
         label.text = "Name"
         label.textColor =   #colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1)
         label.translatesAutoresizingMaskIntoConstraints = false
- 
+        
         return label
     }()
     
     private let usernameLabel: UILabel = {
         let label = UILabel()
-      
+        
         label.font = UIFont.systemFont(ofSize: 16)
         label.text = "Username"
         label.textColor = UIColor.lightGray
@@ -99,7 +99,7 @@ extension UserCell{
             trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: 8),
             stackView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
             bottomAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 16),
-                                    
+            
         ])
         
     }

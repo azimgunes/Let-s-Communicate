@@ -43,7 +43,7 @@ extension UIViewController {
     }
     
     func remove(){
-    willMove(toParent: self)
+        willMove(toParent: self)
         self.view.removeFromSuperview()
         removeFromParent()
         
