@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class MessageCell: UICollectionViewCell{
     
@@ -109,6 +110,16 @@ extension MessageCell{
         msContainerViewRight.isActive = viewModel.currentUserActive
         msContainerViewLeft.isActive = !viewModel.currentUserActive
         profileImage.isHidden = viewModel.currentUserActive
+        profileImage.sd_setImage(with: viewModel.profileImageview)
+        
+        
+        if viewModel.currentUserActive{
+            messageContainer.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner]
+            
+        }else{
+            messageContainer.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+
+        }
     }
     
     
