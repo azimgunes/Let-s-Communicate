@@ -22,7 +22,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private func configureNavigationBar(rootViewController: UIViewController) -> UINavigationController{
         let controller = UINavigationController(rootViewController: rootViewController)
         let appearence = UINavigationBarAppearance()
+        
         appearence.configureWithDefaultBackground()
+        appearence.titleTextAttributes = [.foregroundColor : UIColor.white]
         controller.navigationBar.standardAppearance = appearence
         controller.navigationBar.compactAppearance = appearence
         controller.navigationBar.scrollEdgeAppearance = appearence

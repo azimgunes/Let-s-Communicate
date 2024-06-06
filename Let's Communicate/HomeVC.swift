@@ -26,7 +26,7 @@ class HomeVC: UIViewController {
         super.viewDidLoad()
         style()
         layout()
-        //signOut()
+       //signOut()
         AuthStatus()
         navBarColor()
         
