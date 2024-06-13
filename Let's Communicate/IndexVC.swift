@@ -5,17 +5,15 @@
 
 import UIKit
 
-
-
 private let reuseId = "MessageID"
 
-class ChatsVC: UIViewController {
-    
+class IndexVC: UIViewController {
     
     //MARK: Proporties
     
     private let tableView = UITableView()
     private var lastUsers = [lastUser]()
+    
     //MARK: Lifecycle
     
     override func viewDidLoad() {
@@ -24,20 +22,18 @@ class ChatsVC: UIViewController {
         style()
         layout()
     }
-  
+    
 }
-//MARK: Service
-
-
 
 //MARK: Helpers
-extension ChatsVC{
+
+extension IndexVC{
     private func style(){
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.rowHeight = 80
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseId)
+        tableView.register(IndexCell.self, forCellReuseIdentifier: reuseId)
         tableView.backgroundColor = .clear
         
         
@@ -46,32 +42,31 @@ extension ChatsVC{
     private func layout(){
         view.addSubview(tableView)
         NSLayoutConstraint.activate([
-        
+            
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
-
+            
         ])
     }
 }
 
 //MARK: TableView Delegate/Data Source
 
-extension ChatsVC: UITableViewDelegate, UITableViewDataSource{
+extension IndexVC: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.lastUsers.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseId, for: indexPath)
-        cell.backgroundColor = .brown
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseId, for: indexPath) as! IndexCell
+        cell.lastUser = lastUsers[indexPath.row]
+        cell.backgroundColor = .clear
         cell.selectionStyle = .none
         cell.layer.cornerRadius = 15
-    
-        
         return cell
     }
     

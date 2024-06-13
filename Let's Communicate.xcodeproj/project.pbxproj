@@ -11,6 +11,7 @@
 		3C0460472BFB4AF400300139 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0460462BFB4AF400300139 /* ChatVC.swift */; };
 		3C196CD32BD1919300C866F8 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C196CD22BD1919300C866F8 /* AuthenticationService.swift */; };
 		3C2BAD172C050A4100E7D17B /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2BAD162C050A4100E7D17B /* MessageCell.swift */; };
+		3C382CF82C1B63DF00CFAC34 /* IndexCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C382CF72C1B63DF00CFAC34 /* IndexCell.swift */; };
 		3C3B48982BDC4158009EA582 /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 3C3B48972BDC4158009EA582 /* JGProgressHUD */; };
 		3C4528122BB4AF8D001C7047 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4528112BB4AF8D001C7047 /* Extension.swift */; };
 		3C5166872BCD31E200D0B852 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C5166862BCD31E200D0B852 /* GoogleService-Info.plist */; };
@@ -51,7 +52,7 @@
 		3CB548312BC1EF7100283BF1 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB548302BC1EF7100283BF1 /* RegisterVC.swift */; };
 		3CBCF4422BB9EDC5007A75F1 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBCF4412BB9EDC5007A75F1 /* LoginViewModel.swift */; };
 		3CC7CCEF2BF10FAB0020EB6E /* ContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC7CCEE2BF10FAB0020EB6E /* ContainerVC.swift */; };
-		3CC7CCF12BF10FE30020EB6E /* ChatsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC7CCF02BF10FE30020EB6E /* ChatsVC.swift */; };
+		3CC7CCF12BF10FE30020EB6E /* IndexVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC7CCF02BF10FE30020EB6E /* IndexVC.swift */; };
 		3CC7CCF32BF1113A0020EB6E /* MessageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC7CCF22BF1113A0020EB6E /* MessageVC.swift */; };
 		3CC8E9122C0B38B1003DAFE4 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC8E9112C0B38B1003DAFE4 /* Message.swift */; };
 		3CCB6A352BF927FA00343FDC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB6A342BF927FA00343FDC /* User.swift */; };
@@ -70,6 +71,7 @@
 		3C0460462BFB4AF400300139 /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
 		3C196CD22BD1919300C866F8 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		3C2BAD162C050A4100E7D17B /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		3C382CF72C1B63DF00CFAC34 /* IndexCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexCell.swift; sourceTree = "<group>"; };
 		3C4528112BB4AF8D001C7047 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		3C5166862BCD31E200D0B852 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3C52AC122BB5B6440012C1F6 /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
@@ -80,7 +82,7 @@
 		3CB548302BC1EF7100283BF1 /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		3CBCF4412BB9EDC5007A75F1 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		3CC7CCEE2BF10FAB0020EB6E /* ContainerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerVC.swift; sourceTree = "<group>"; };
-		3CC7CCF02BF10FE30020EB6E /* ChatsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsVC.swift; sourceTree = "<group>"; };
+		3CC7CCF02BF10FE30020EB6E /* IndexVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexVC.swift; sourceTree = "<group>"; };
 		3CC7CCF22BF1113A0020EB6E /* MessageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageVC.swift; sourceTree = "<group>"; };
 		3CC8E9112C0B38B1003DAFE4 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		3CCB6A342BF927FA00343FDC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -157,9 +159,9 @@
 				3CFA7BD22BB217A2000DA8F2 /* LoginVC.swift */,
 				3CB548302BC1EF7100283BF1 /* RegisterVC.swift */,
 				3C8263552BD91CC1004068C0 /* HomeVC.swift */,
-				3CC7CCEE2BF10FAB0020EB6E /* ContainerVC.swift */,
-				3CC7CCF02BF10FE30020EB6E /* ChatsVC.swift */,
+				3CC7CCF02BF10FE30020EB6E /* IndexVC.swift */,
 				3CC7CCF22BF1113A0020EB6E /* MessageVC.swift */,
+				3CC7CCEE2BF10FAB0020EB6E /* ContainerVC.swift */,
 				3C0460462BFB4AF400300139 /* ChatVC.swift */,
 			);
 			name = Controller;
@@ -173,6 +175,7 @@
 				3C7C3F8E2BF76E7C00E5752D /* UserCell.swift */,
 				3CF2036F2BFD225C005C0D18 /* ChatInputView.swift */,
 				3C2BAD162C050A4100E7D17B /* MessageCell.swift */,
+				3C382CF72C1B63DF00CFAC34 /* IndexCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -362,7 +365,8 @@
 				3CC8E9122C0B38B1003DAFE4 /* Message.swift in Sources */,
 				3CCB6A352BF927FA00343FDC /* User.swift in Sources */,
 				3CC7CCF32BF1113A0020EB6E /* MessageVC.swift in Sources */,
-				3CC7CCF12BF10FE30020EB6E /* ChatsVC.swift in Sources */,
+				3CC7CCF12BF10FE30020EB6E /* IndexVC.swift in Sources */,
+				3C382CF82C1B63DF00CFAC34 /* IndexCell.swift in Sources */,
 				3CBCF4422BB9EDC5007A75F1 /* LoginViewModel.swift in Sources */,
 				3CFA7BD12BB217A2000DA8F2 /* SceneDelegate.swift in Sources */,
 				3C7C3F8F2BF76E7C00E5752D /* UserCell.swift in Sources */,

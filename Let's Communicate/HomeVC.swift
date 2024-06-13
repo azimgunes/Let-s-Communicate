@@ -17,7 +17,7 @@ class HomeVC: UIViewController {
     private var messageScreen: UIBarButtonItem!
     private var container = ContainerVC()
     private let messageVC = MessageVC()
-    private lazy var viewControllers: [UIViewController] = [ChatsVC(), messageVC]
+    private lazy var viewControllers: [UIViewController] = [IndexVC(), messageVC]
     
     
     //MARK: Lifecycle
@@ -58,7 +58,7 @@ extension HomeVC {
     
     private func style(){
         configureGradient()
-        chatsButton = UIBarButtonItem(customView: configureBar(text: "Chats", selector: #selector(chatButton)))
+        chatsButton = UIBarButtonItem(customView: configureBar(text: "Index", selector: #selector(chatButton)))
         messageScreen = UIBarButtonItem(customView: configureBar(text: "Message", selector: #selector(messageButton)))
         
         self.navigationItem.leftBarButtonItems = [chatsButton]
@@ -121,7 +121,7 @@ extension HomeVC {
 extension HomeVC{
     
     @objc private func chatButton(){
-        if self.container.children.first == ChatsVC() {return}
+        if self.container.children.first == IndexVC() {return}
         self.messageScreen.customView?.alpha = 0.5
         self.chatsButton.customView?.alpha = 1
         self.container.add(viewControllers[0])
@@ -129,7 +129,7 @@ extension HomeVC{
     }
     
     @objc private func messageButton(){
-        if self.container.children.first == ChatsVC() {return}
+        if self.container.children.first == IndexVC() {return}
         self.messageScreen.customView?.alpha = 1
         self.chatsButton.customView?.alpha = 0.5
         self.container.add(viewControllers[1])
