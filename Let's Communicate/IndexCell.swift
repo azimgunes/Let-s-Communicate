@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class IndexCell: UITableViewCell{
     //MARK: Proporties
@@ -107,8 +108,12 @@ extension IndexCell{
     private func configureIndexCell(){
         
         guard let lastUser = self.lastUser else { return}
+        
+        let viewModel = IndexViewModel(lastUser: lastUser)
         self.usernameLabel.text = lastUser.user.username
         self.lastMessageLabel.text = lastUser.message.text
+        self.profileImage.sd_setImage(with: viewModel.profileImage)
+        self.timesLabel.text = viewModel.timestampString
 
         
         

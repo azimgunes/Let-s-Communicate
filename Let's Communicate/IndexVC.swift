@@ -7,10 +7,14 @@ import UIKit
 
 private let reuseId = "MessageID"
 
+protocol IndexVcProtocol: AnyObject{
+    func showMessageVc(_ indexVC: IndexVC, user: User)
+}
+
 class IndexVC: UIViewController {
     
     //MARK: Proporties
-    
+    weak var delegate: IndexVcProtocol?
     private let tableView = UITableView()
     private var lastUsers = [lastUser]()
     
@@ -68,6 +72,10 @@ extension IndexVC: UITableViewDelegate, UITableViewDataSource{
         cell.selectionStyle = .none
         cell.layer.cornerRadius = 15
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.delegate?.showMessageVc(self, user: lastUsers[indexPath.row].user)
     }
     
     private func fetchLastUsers(){
