@@ -5,6 +5,7 @@
 
 import UIKit
 
+
 private let reuseId = "MessageID"
 
 protocol IndexVcProtocol: AnyObject{
@@ -17,6 +18,7 @@ class IndexVC: UIViewController {
     weak var delegate: IndexVcProtocol?
     private let tableView = UITableView()
     private var lastUsers = [lastUser]()
+    
     
     //MARK: Lifecycle
     
@@ -40,7 +42,6 @@ extension IndexVC{
         tableView.register(IndexCell.self, forCellReuseIdentifier: reuseId)
         tableView.backgroundColor = .clear
         
-        
     }
     
     private func layout(){
@@ -62,11 +63,11 @@ extension IndexVC{
 extension IndexVC: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.lastUsers.count
+        return self.lastUsers.count 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseId, for: indexPath) as! IndexCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseId, for: [indexPath.row]) as! IndexCell
         cell.lastUser = lastUsers[indexPath.row]
         cell.backgroundColor = .clear
         cell.selectionStyle = .none
@@ -85,3 +86,4 @@ extension IndexVC: UITableViewDelegate, UITableViewDataSource{
         }
     }
 }
+

@@ -7,6 +7,8 @@
 
 import UIKit
 import SDWebImage
+import Firebase
+import FirebaseAuth
 
 class IndexCell: UITableViewCell{
     //MARK: Proporties

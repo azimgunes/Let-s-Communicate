@@ -88,7 +88,7 @@ extension MessageVC: UITableViewDataSource, UITableViewDelegate{
         return cell
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return users.count
+        return users.count 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

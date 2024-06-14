@@ -16,11 +16,12 @@ class HomeVC: UIViewController {
     private var chatsButton: UIBarButtonItem!
     private var messageScreen: UIBarButtonItem!
     private var container = ContainerVC()
+    
+    //MARK: viewControllers 
     private let indexVC = IndexVC()
-
     private let messageVC = MessageVC()
 
-    private lazy var viewControllers: [UIViewController] = [IndexVC(), messageVC]
+    private lazy var viewControllers: [UIViewController] = [indexVC, messageVC]
     
     
     //MARK: Lifecycle
@@ -154,6 +155,11 @@ extension HomeVC: messageVCProtocol{
     func toChatVC(user: User) {
         let controller = ChatVC(user: user)
         self.navigationController?.pushViewController(controller, animated: true)
+
+
+     
+
+        
     }
     
     
@@ -161,9 +167,10 @@ extension HomeVC: messageVCProtocol{
 
 //MARK: IndexVcProtocol
 extension HomeVC: IndexVcProtocol {
-    func showMessageVc(_ IndexVC: IndexVC, user: User) {
+    func showMessageVc(_ indexVC: IndexVC, user: User) {
         let controller = ChatVC(user: user)
         self.navigationController?.pushViewController(controller, animated: true)
+
     }
     
     
