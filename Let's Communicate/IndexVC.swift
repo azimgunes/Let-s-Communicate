@@ -28,8 +28,13 @@ class IndexVC: UIViewController {
         style()
         layout()
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchLastUsers()
+    }
+
 }
+
 
 //MARK: Helpers
 
