@@ -21,12 +21,12 @@ class HomeVC: UIViewController {
     private var isProfileViewActive : Bool = false
     
     
- 
+    
     
     //MARK: viewControllers 
     private let indexVC = IndexVC()
     private let messageVC = MessageVC()
-
+    
     private lazy var viewControllers: [UIViewController] = [indexVC, messageVC]
     
     
@@ -36,7 +36,7 @@ class HomeVC: UIViewController {
         super.viewDidLoad()
         style()
         layout()
-       //signOut()
+        //signOut()
         AuthStatus()
         navBarColor()
         
@@ -72,7 +72,7 @@ extension HomeVC {
         self.navigationController?.navigationBar.tintColor = .white
         chatsButton = UIBarButtonItem(customView: configureBar(text: "Index", selector: #selector(chatButton)))
         messageScreen = UIBarButtonItem(customView: configureBar(text: "Message", selector: #selector(messageButton)))
-      self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "person"), style: UIBarButtonItem.Style.done, target: self, action: #selector(profileButton))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "person"), style: UIBarButtonItem.Style.done, target: self, action: #selector(profileButton))
         self.navigationItem.leftBarButtonItems = [chatsButton, messageScreen]
         profileView.translatesAutoresizingMaskIntoConstraints = false
         profileView.layer.cornerRadius = 25
@@ -95,7 +95,7 @@ extension HomeVC {
             profileView.leadingAnchor.constraint(equalTo: view.trailingAnchor),
             profileView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             profileView.widthAnchor.constraint(equalToConstant: view.frame.width*0.6),
-        
+            
         ])
     }
     
@@ -148,7 +148,7 @@ extension HomeVC{
                 self.profileView.frame.origin.x = self.view.frame.width
             }else{
                 self.profileView.frame.origin.x = self.view.frame.width*0.4
-
+                
             }
             
         }
@@ -185,10 +185,10 @@ extension HomeVC: messageVCProtocol{
     func toChatVC(user: User) {
         let controller = ChatVC(user: user)
         self.navigationController?.pushViewController(controller, animated: true)
-
-
-     
-
+        
+        
+        
+        
         
     }
     
@@ -200,7 +200,7 @@ extension HomeVC: IndexVcProtocol {
     func showMessageVc(_ indexVC: IndexVC, user: User) {
         let controller = ChatVC(user: user)
         self.navigationController?.pushViewController(controller, animated: true)
-
+        
     }
     
     

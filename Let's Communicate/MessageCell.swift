@@ -12,7 +12,7 @@ class MessageCell: UICollectionViewCell{
     
     var msContainerViewLeft: NSLayoutConstraint!
     var msContainerViewRight: NSLayoutConstraint!
-
+    
     var message: Message?{
         didSet{configure()}
     }
@@ -119,7 +119,7 @@ extension MessageCell{
             
         }else{
             messageContainer.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner]
-
+            
         }
     }
     

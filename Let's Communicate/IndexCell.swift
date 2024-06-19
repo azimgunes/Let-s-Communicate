@@ -78,7 +78,7 @@ extension IndexCell{
         
         timesLabel.translatesAutoresizingMaskIntoConstraints = false
         
-
+        
     }
     
     private func layout(){
@@ -92,7 +92,7 @@ extension IndexCell{
             profileImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
             profileImage.heightAnchor.constraint(equalToConstant: 60),
             profileImage.widthAnchor.constraint(equalToConstant: 60),
-        
+            
             
             //stackView
             stackView.centerYAnchor.constraint(equalTo: centerYAnchor),
@@ -103,7 +103,7 @@ extension IndexCell{
             timesLabel.topAnchor.constraint(equalTo: topAnchor, constant: 12),
             trailingAnchor.constraint(equalTo: timesLabel.trailingAnchor, constant: 8),
             
-        
+            
         ])
     }
     
@@ -116,7 +116,7 @@ extension IndexCell{
         self.lastMessageLabel.text = lastUser.message.text
         self.profileImage.sd_setImage(with: viewModel.profileImage)
         self.timesLabel.text = viewModel.timestampString
-
+        
         
         
     }

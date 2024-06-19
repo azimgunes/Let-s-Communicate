@@ -53,11 +53,11 @@ class ChatVC: UICollectionViewController {
         layout()
         fetchMessages()
         
-     
-
+        
+        
         collectionView.delegate = self
         collectionView.dataSource = self
-   
+        
     }
     
     override var inputAccessoryView: UIView?{
@@ -70,7 +70,7 @@ class ChatVC: UICollectionViewController {
     
 }
 
-    //MARK: Service
+//MARK: Service
 
 
 
@@ -81,13 +81,13 @@ extension ChatVC{
         collectionView.register(MessageCell.self, forCellWithReuseIdentifier: reuseId)
         chatInputView.delegate = self
         navigationItem.title = user.name
-
+        
         let appearance = UINavigationBarAppearance()
         appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
         appearance.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
         navigationItem.standardAppearance = appearance
         navigationItem.scrollEdgeAppearance = appearance
-
+        
     }
     
     private func layout(){
@@ -149,7 +149,7 @@ extension ChatVC: ChatInputViewProtocol{
             self.collectionView.scrollToItem(at: [0, messages.count - 1], at: .bottom, animated: true)
         }
     }
-
-
+    
+    
     
 }

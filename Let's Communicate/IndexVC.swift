@@ -32,7 +32,7 @@ class IndexVC: UIViewController {
         super.viewWillAppear(animated)
         fetchLastUsers()
     }
-
+    
 }
 
 
