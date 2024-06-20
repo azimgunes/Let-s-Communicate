@@ -7,32 +7,42 @@
 
 import UIKit
 import FirebaseAuth
+import SDWebImage
+
+protocol ProfileViewProtocol: AnyObject {
+    func signOutProfileView()
+}
 
 class ProfileView: UIView {
     
     //MARK: Proporties
+    
+    var user: User?{
+        didSet{configure()}
+    }
+    
+    weak var delegate: ProfileViewProtocol?
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
         imageView.backgroundColor =  #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
+        imageView.layer.borderColor = UIColor.white.cgColor
+        imageView.layer.borderWidth = 2
         return imageView
     }()
     
-    private let nameLabel: UILabel = {
+    private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .footnote)
-        label.font = UIFont(name: "footnote", size: 48)
         label.textColor = .white
-        label.text = "Azim Güneş"
         label.textAlignment = .center
         return label
     }()
     
-    private let usernameLabel: UILabel = {
+    private lazy var usernameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.text = "malatyalii"
         label.font = UIFont.preferredFont(forTextStyle: .footnote)
         label.textAlignment = .center
         return label
@@ -41,18 +51,20 @@ class ProfileView: UIView {
     private let spaceView: UIView = {
         let view = UIView()
         view.backgroundColor = .clear
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.frame.size.height = 10
         return view
     }()
     
-    private let signoutButton: UIButton = {
-        let button = UIButton(type: .system)
+    private lazy var signoutButton: UIButton = {
+        let button = UIButton(type: .custom)
         button.setTitle("Sign Out", for: .normal)
-        button.titleLabel?.font = UIFont(name: "footnote", size: 8)
+        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .footnote)
         button.layer.cornerRadius = 10
         button.layer.borderColor = UIColor.red.cgColor
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor =  #colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 0.3096261161)
-        button.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        button.backgroundColor =  #colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 0.07131696431)
+        button.addTarget(self, action: #selector(signOut), for: .touchUpInside)
         return button
         
         
@@ -78,11 +90,24 @@ class ProfileView: UIView {
     }
     
 }
+//MARK: Selector
 
+extension ProfileView{
+    @objc private func signOut(_ sender: UIButton){
+        delegate?.signOutProfileView()
+    }
+}
 
 //MARK: Helpers
 
 extension ProfileView{
+    
+    private func configure(){
+        guard let user = self.user else { return }
+        self.usernameLabel.attributedText = attributedText(headerTitle: "", title: "\(user.username)")
+        self.nameLabel.attributedText = attributedText(headerTitle: "", title: "\(user.name)")
+        self.profileImageView.sd_setImage(with: URL(string: user.profileImage))
+    }
     private func style(){
         backgroundColor = #colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 0.3096261161)
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -114,10 +139,10 @@ extension ProfileView{
         ])
         
     }
-    private func fetchUser(){
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        Service.fetchUser(uid: uid) { user in
-            print(user.username)
-        }
+    
+    private func attributedText(headerTitle: String, title: String) -> NSMutableAttributedString{
+        let attributed = NSMutableAttributedString(string: "\(headerTitle)", attributes: [.foregroundColor: UIColor.white.withAlphaComponent(0.7), .font: UIFont.systemFont(ofSize: 14, weight: .bold)])
+        attributed.append(NSAttributedString(string: title, attributes: [.foregroundColor: UIColor.white, .font: UIFont.systemFont(ofSize: 16, weight: .heavy)]))
+        return attributed
     }
 }

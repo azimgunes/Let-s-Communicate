@@ -36,9 +36,9 @@ class HomeVC: UIViewController {
         super.viewDidLoad()
         style()
         layout()
-        //signOut()
         AuthStatus()
         navBarColor()
+        fetchUser()
         
     }
     
@@ -55,7 +55,13 @@ class HomeVC: UIViewController {
 
 extension HomeVC {
     
-    
+    private func fetchUser(){
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        Service.fetchUser(uid: uid) { user in
+            self.profileView.user = user
+        }
+    }
+
     private func configureBar(text: String, selector: Selector) -> UIButton {
         
         let button = UIButton(type: .system)
@@ -77,6 +83,7 @@ extension HomeVC {
         profileView.translatesAutoresizingMaskIntoConstraints = false
         profileView.layer.cornerRadius = 25
         profileView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
+        profileView.delegate = self
         self.messageVC.delegate = self
         self.indexVC.delegate = self
         
@@ -201,6 +208,17 @@ extension HomeVC: IndexVcProtocol {
         let controller = ChatVC(user: user)
         self.navigationController?.pushViewController(controller, animated: true)
         
+    }
+    
+    
+}
+
+
+//MARK: ProfileViewProtocol
+
+extension HomeVC: ProfileViewProtocol{
+    func signOutProfileView() {
+        self.signOut()
     }
     
     
