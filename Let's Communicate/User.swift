@@ -22,3 +22,9 @@ struct User{
         self.profileImage = data["profileImage"] as? String ?? ""
     }
 }
+
+
+struct lastUser{
+    let user: User
+    let message: Message
+}

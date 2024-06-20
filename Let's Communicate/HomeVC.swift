@@ -16,8 +16,18 @@ class HomeVC: UIViewController {
     private var chatsButton: UIBarButtonItem!
     private var messageScreen: UIBarButtonItem!
     private var container = ContainerVC()
+    
+    private let profileView = ProfileView()
+    private var isProfileViewActive : Bool = false
+    
+    
+    
+    
+    //MARK: viewControllers 
+    private let indexVC = IndexVC()
     private let messageVC = MessageVC()
-    private lazy var viewControllers: [UIViewController] = [ChatsVC(), messageVC]
+    
+    private lazy var viewControllers: [UIViewController] = [indexVC, messageVC]
     
     
     //MARK: Lifecycle
@@ -26,9 +36,9 @@ class HomeVC: UIViewController {
         super.viewDidLoad()
         style()
         layout()
-        //signOut()
         AuthStatus()
         navBarColor()
+        fetchUser()
         
     }
     
@@ -45,7 +55,13 @@ class HomeVC: UIViewController {
 
 extension HomeVC {
     
-    
+    private func fetchUser(){
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        Service.fetchUser(uid: uid) { user in
+            self.profileView.user = user
+        }
+    }
+
     private func configureBar(text: String, selector: Selector) -> UIButton {
         
         let button = UIButton(type: .system)
@@ -58,13 +74,18 @@ extension HomeVC {
     
     private func style(){
         configureGradient()
-        chatsButton = UIBarButtonItem(customView: configureBar(text: "Chats", selector: #selector(chatButton)))
+        
+        self.navigationController?.navigationBar.tintColor = .white
+        chatsButton = UIBarButtonItem(customView: configureBar(text: "Index", selector: #selector(chatButton)))
         messageScreen = UIBarButtonItem(customView: configureBar(text: "Message", selector: #selector(messageButton)))
-        
-        self.navigationItem.leftBarButtonItems = [chatsButton]
-        
-        self.navigationItem.rightBarButtonItems = [messageScreen]
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "person"), style: UIBarButtonItem.Style.done, target: self, action: #selector(profileButton))
+        self.navigationItem.leftBarButtonItems = [chatsButton, messageScreen]
+        profileView.translatesAutoresizingMaskIntoConstraints = false
+        profileView.layer.cornerRadius = 25
+        profileView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
+        profileView.delegate = self
         self.messageVC.delegate = self
+        self.indexVC.delegate = self
         
         
         
@@ -75,7 +96,14 @@ extension HomeVC {
     }
     
     private func layout(){
-        
+        view.addSubview(profileView)
+        NSLayoutConstraint.activate([
+            profileView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            profileView.leadingAnchor.constraint(equalTo: view.trailingAnchor),
+            profileView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            profileView.widthAnchor.constraint(equalToConstant: view.frame.width*0.6),
+            
+        ])
     }
     
     private func configureContainer(){
@@ -120,8 +148,22 @@ extension HomeVC {
 
 extension HomeVC{
     
+    
+    @objc private func profileButton(_ sender: UIBarButtonItem){
+        UIView.animate(withDuration: 0.3) {
+            if self.isProfileViewActive{
+                self.profileView.frame.origin.x = self.view.frame.width
+            }else{
+                self.profileView.frame.origin.x = self.view.frame.width*0.4
+                
+            }
+            
+        }
+        self.isProfileViewActive.toggle()
+    }
+    
     @objc private func chatButton(){
-        if self.container.children.first == ChatsVC() {return}
+        if self.container.children.first == IndexVC() {return}
         self.messageScreen.customView?.alpha = 0.5
         self.chatsButton.customView?.alpha = 1
         self.container.add(viewControllers[0])
@@ -129,7 +171,7 @@ extension HomeVC{
     }
     
     @objc private func messageButton(){
-        if self.container.children.first == ChatsVC() {return}
+        if self.container.children.first == IndexVC() {return}
         self.messageScreen.customView?.alpha = 1
         self.chatsButton.customView?.alpha = 0.5
         self.container.add(viewControllers[1])
@@ -145,11 +187,38 @@ extension HomeVC{
     }
     
 }
-
+//MARK: messageVCProtocol
 extension HomeVC: messageVCProtocol{
     func toChatVC(user: User) {
         let controller = ChatVC(user: user)
         self.navigationController?.pushViewController(controller, animated: true)
+        
+        
+        
+        
+        
+    }
+    
+    
+}
+
+//MARK: IndexVcProtocol
+extension HomeVC: IndexVcProtocol {
+    func showMessageVc(_ indexVC: IndexVC, user: User) {
+        let controller = ChatVC(user: user)
+        self.navigationController?.pushViewController(controller, animated: true)
+        
+    }
+    
+    
+}
+
+
+//MARK: ProfileViewProtocol
+
+extension HomeVC: ProfileViewProtocol{
+    func signOutProfileView() {
+        self.signOut()
     }
     
     

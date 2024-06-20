@@ -11,7 +11,6 @@ class ContainerVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureGradient()
     }
     
     

@@ -6,12 +6,13 @@
 //
 
 import UIKit
+import SDWebImage
 
 class MessageCell: UICollectionViewCell{
     
     var msContainerViewLeft: NSLayoutConstraint!
     var msContainerViewRight: NSLayoutConstraint!
-
+    
     var message: Message?{
         didSet{configure()}
     }
@@ -85,7 +86,8 @@ extension MessageCell{
             
             
             
-            messageContainer.topAnchor.constraint(equalTo: topAnchor, constant: 32),
+            messageContainer.topAnchor.constraint(equalTo: messageText.topAnchor, constant: 48),
+            messageContainer.bottomAnchor.constraint(equalTo: profileImage.bottomAnchor),
             messageContainer.widthAnchor.constraint(lessThanOrEqualToConstant: 300),
             messageContainer.heightAnchor.constraint(lessThanOrEqualToConstant: 300),
             
@@ -109,6 +111,16 @@ extension MessageCell{
         msContainerViewRight.isActive = viewModel.currentUserActive
         msContainerViewLeft.isActive = !viewModel.currentUserActive
         profileImage.isHidden = viewModel.currentUserActive
+        profileImage.sd_setImage(with: viewModel.profileImageview)
+        
+        
+        if viewModel.currentUserActive{
+            messageContainer.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner]
+            
+        }else{
+            messageContainer.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+            
+        }
     }
     
     

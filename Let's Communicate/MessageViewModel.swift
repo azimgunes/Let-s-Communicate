@@ -20,5 +20,9 @@ struct MessageViewModel{
     var currentUserActive: Bool{
         return message.currentUser
     }
+    
+    var profileImageview: URL?{
+        return URL(string: message.user?.profileImage ?? "")
+    }
 }
 
