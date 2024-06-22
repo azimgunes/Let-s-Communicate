@@ -19,7 +19,7 @@ class RegisterVC: UIViewController {
     
     private let camButton: UIButton = {
         let button = UIButton(type: .system)
-        button.tintColor = #colorLiteral(red: 0.1215686277, green: 0.01176470611, blue: 0.4235294163, alpha: 1)
+        button.tintColor = #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 0.5510881696)
         button.contentVerticalAlignment = .fill
         button.contentHorizontalAlignment = .fill
         button.setImage(UIImage(systemName: "camera.circle.fill"), for: .normal)
@@ -75,7 +75,7 @@ class RegisterVC: UIViewController {
         let button = UIButton(type: .custom)
         button.setTitle("Sign Up", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
-        button.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
+        button.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 0.5510881696)
         button.layer.cornerRadius = 10
         button.isEnabled = false
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -232,7 +232,7 @@ extension RegisterVC {
             stackView.topAnchor.constraint(equalTo: camButton.bottomAnchor, constant: 50),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            emailContainer.heightAnchor.constraint(equalToConstant: 30),
+            emailContainer.heightAnchor.constraint(equalToConstant: 45),
             
             
             registerButton.topAnchor.constraint(equalTo: passwordContainer.bottomAnchor, constant: 40),

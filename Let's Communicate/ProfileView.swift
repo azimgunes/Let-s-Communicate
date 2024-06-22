@@ -7,6 +7,8 @@
 
 import UIKit
 import FirebaseAuth
+import Firebase
+import FirebaseFirestore
 import SDWebImage
 
 protocol ProfileViewProtocol: AnyObject {
@@ -29,6 +31,7 @@ class ProfileView: UIView {
         imageView.backgroundColor =  #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
         imageView.layer.borderColor = UIColor.white.cgColor
         imageView.layer.borderWidth = 2
+        imageView.isUserInteractionEnabled = true
         return imageView
     }()
     
@@ -66,8 +69,6 @@ class ProfileView: UIView {
         button.backgroundColor =  #colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 0.07131696431)
         button.addTarget(self, action: #selector(signOut), for: .touchUpInside)
         return button
-        
-        
     }()
     
     private lazy var stackView = UIStackView()
@@ -79,7 +80,10 @@ class ProfileView: UIView {
         super.init(frame: frame)
         style()
         layout()
+
+
     }
+
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -95,19 +99,26 @@ class ProfileView: UIView {
 extension ProfileView{
     @objc private func signOut(_ sender: UIButton){
         delegate?.signOutProfileView()
+
+
     }
 }
 
 //MARK: Helpers
 
 extension ProfileView{
-    
+ 
     private func configure(){
-        guard let user = self.user else { return }
-        self.usernameLabel.attributedText = attributedText(headerTitle: "", title: "\(user.username)")
-        self.nameLabel.attributedText = attributedText(headerTitle: "", title: "\(user.name)")
-        self.profileImageView.sd_setImage(with: URL(string: user.profileImage))
+
+            guard let user = self.user else { return }
+            self.usernameLabel.attributedText = attributedText(headerTitle: "", title: "\(user.username)")
+            self.nameLabel.attributedText = attributedText(headerTitle: "", title: "\(user.name)")
+            self.profileImageView.sd_setImage(with: URL(string: user.profileImage))
+        
+
     }
+    
+    
     private func style(){
         backgroundColor = #colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 0.3096261161)
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -119,6 +130,7 @@ extension ProfileView{
         stackView.distribution = .fillEqually
         stackView.heightAnchor.constraint(equalToConstant: 90).isActive = true
         stackView.spacing = 3
+        stackView.reloadInputViews()
     }
     private func layout(){
         addSubview(profileImageView)
@@ -145,4 +157,5 @@ extension ProfileView{
         attributed.append(NSAttributedString(string: title, attributes: [.foregroundColor: UIColor.white, .font: UIFont.systemFont(ofSize: 16, weight: .heavy)]))
         return attributed
     }
+   
 }

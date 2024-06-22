@@ -20,7 +20,7 @@ class LoginVC: UIViewController {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.image = UIImage(named: "appIcon")
+        imageView.image = UIImage(named: "2")
         imageView.tintColor = .purple
         return imageView
     }()
@@ -48,7 +48,7 @@ class LoginVC: UIViewController {
         let button = UIButton(type: .custom)
         button.setTitle("Log In", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
-        button.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
+        button.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 0.5510881696)
         button.layer.cornerRadius = 10
         button.isEnabled = false
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -157,6 +157,7 @@ extension LoginVC {
         emailContainer.translatesAutoresizingMaskIntoConstraints = false
         registerPage.translatesAutoresizingMaskIntoConstraints = false
         
+        
         // StackView
         
         stackView = UIStackView(arrangedSubviews: [
@@ -193,7 +194,7 @@ extension LoginVC {
             stackView.topAnchor.constraint(equalTo: iconImageView.bottomAnchor, constant: 70),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            emailContainer.heightAnchor.constraint(equalToConstant: 30),
+            emailContainer.heightAnchor.constraint(equalToConstant: 45),
             
             //MARK: loginButton
             loginButton.topAnchor.constraint(equalTo: passwordContainer.bottomAnchor, constant: 30),

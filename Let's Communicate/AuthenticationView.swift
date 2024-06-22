@@ -18,6 +18,7 @@ class AuthenticationView: UIView {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(imageView)
         textField.translatesAutoresizingMaskIntoConstraints = false
+
         addSubview(textField)
         //MARK: imageView Anchors
         NSLayoutConstraint.activate([
@@ -36,8 +37,8 @@ class AuthenticationView: UIView {
             
         ])
         layer.borderColor = UIColor( #colorLiteral(red: 0.1215686277, green: 0.01176470611, blue: 0.4235294163, alpha: 1)).cgColor
-        layer.borderWidth = 0.2
-        layer.cornerRadius = 5
+        layer.borderWidth = 0.18
+        layer.cornerRadius = 15
     }
     
     required init?(coder: NSCoder) {

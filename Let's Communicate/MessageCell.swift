@@ -18,11 +18,17 @@ class MessageCell: UICollectionViewCell{
     }
     
     //MARK: Proporties
+    
+    
+
+    
+    
     private let profileImage: UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
         imageView.backgroundColor = .blue
+        imageView.isUserInteractionEnabled = true
         return imageView
     }()
     
@@ -49,7 +55,10 @@ class MessageCell: UICollectionViewCell{
         super.init(frame: frame)
         style()
         layout()
+    
     }
+    
+
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -122,6 +131,6 @@ extension MessageCell{
             
         }
     }
-    
+
     
 }
