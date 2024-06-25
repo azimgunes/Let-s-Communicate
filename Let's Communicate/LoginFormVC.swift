@@ -8,7 +8,7 @@
 import UIKit
 import JGProgressHUD
 
-class LoginVC: UIViewController {
+class LoginFormVC: UIViewController {
     
     
     //MARK: Properties
@@ -74,7 +74,7 @@ class LoginVC: UIViewController {
         Layout()
     }
     @objc private func toRegisterVC(_ sender: UIButton){
-        let controller = RegisterVC()
+        let controller = RegisterFormVC()
         controller.modalPresentationStyle = .fullScreen
         controller.modalTransitionStyle = .crossDissolve
         present(controller, animated: true, completion: nil)
@@ -85,7 +85,7 @@ class LoginVC: UIViewController {
 
 //MARK: Selector
 
-extension LoginVC{
+extension LoginFormVC{
     
     
    @objc func LogIn(_ sender: UIButton){
@@ -120,7 +120,7 @@ extension LoginVC{
 
 
 //MARK: Helpers
-extension LoginVC {
+extension LoginFormVC {
     
     private func loginButtonStatus(){
         if viewModel.status{

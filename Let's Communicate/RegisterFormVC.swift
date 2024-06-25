@@ -10,7 +10,7 @@ import FirebaseAuth
 import FirebaseStorage
 import FirebaseFirestore
 
-class RegisterVC: UIViewController {
+class RegisterFormVC: UIViewController {
     //MARK: Proporties
     
     
@@ -96,7 +96,7 @@ class RegisterVC: UIViewController {
 }
 //MARK: Selectors
 
-extension RegisterVC {
+extension RegisterFormVC {
     @objc private func textFieldChanged(_ sender: UITextField){
         if sender == emailTextField {
             viewModel.email = sender.text
@@ -111,7 +111,7 @@ extension RegisterVC {
     }
     
     @objc private func toLoginVC(_ sender: UIButton){
-        let vc = LoginVC()
+        let vc = LoginFormVC()
         vc.modalPresentationStyle = .fullScreen
         vc.modalTransitionStyle = .crossDissolve
         present(vc, animated: true, completion: nil)
@@ -149,7 +149,7 @@ extension RegisterVC {
 //MARK: Helpers
 
 
-extension RegisterVC {
+extension RegisterFormVC {
     private func registerButtonStatus(){
         if viewModel.status{
             registerButton.isEnabled = true
@@ -248,7 +248,7 @@ extension RegisterVC {
     }
 }
 
-extension RegisterVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension RegisterFormVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[.originalImage] as! UIImage
         self.profileImageUpload = image

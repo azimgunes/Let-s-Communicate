@@ -1,94 +1,100 @@
+//
+//  MessageVC.swift
 //  Let's Communicate
 //
 //  Created by Azim Güneş on 12.05.2024.
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
-
-private let reuseId = "MessageID"
-
-protocol IndexVcProtocol: AnyObject{
-    func showMessageVc(_ indexVC: IndexVC, user: User)
+private let reuseId = "userCell"
+protocol messageVCProtocol: AnyObject {
+    func toChatVC(user: User)
 }
 
 class IndexVC: UIViewController {
     
-    //MARK: Proporties
-    weak var delegate: IndexVcProtocol?
-    private let tableView = UITableView()
-    private var lastUsers = [lastUser]()
     
+    
+    //MARK: Properties
+    
+    weak var delegate: messageVCProtocol?
+    private let tableView = UITableView()
+    private var users = [User]()
     
     //MARK: Lifecycle
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchLastUsers()
+        view.backgroundColor = .white
         style()
         layout()
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        fetchLastUsers()
+        Service.fetchData { users in
+            self.users = users
+            self.tableView.reloadData()
+        }
     }
-    
 }
 
 
-//MARK: Helpers
+//MARK: Extensions
 
 extension IndexVC{
     private func style(){
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.rowHeight = 80
-        tableView.delegate = self
+        //Table View
+        tableView.delegate =  self
         tableView.dataSource = self
-        tableView.register(IndexCell.self, forCellReuseIdentifier: reuseId)
+        tableView.register(UserCell.self, forCellReuseIdentifier: reuseId)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .clear
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.rowHeight = 80
+        tableView.separatorStyle = .singleLine
+        tableView.separatorColor =  #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
         
     }
-    
     private func layout(){
+        
+        
         view.addSubview(tableView)
+        
         NSLayoutConstraint.activate([
-            
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
             
             
         ])
     }
 }
 
-//MARK: TableView Delegate/Data Source
-
-extension IndexVC: UITableViewDelegate, UITableViewDataSource{
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.lastUsers.count 
-    }
-    
+//MARK: Table View
+extension IndexVC: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseId, for: [indexPath.row]) as! IndexCell
-        cell.lastUser = lastUsers[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseId, for: indexPath) as! UserCell
         cell.backgroundColor = .clear
         cell.selectionStyle = .none
-        cell.layer.cornerRadius = 15
+        cell.separatorInset = UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5)
+        cell.user = users[indexPath.row]
         return cell
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return users.count 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.delegate?.showMessageVc(self, user: lastUsers[indexPath.row].user)
+        self.delegate?.toChatVC(user: users[indexPath.row])
     }
     
-    private func fetchLastUsers(){
-        Service.fetchLastUser { lastUsers in
-            self.lastUsers = lastUsers
-            self.tableView.reloadData()
-        }
-    }
+    
+    
 }
-
