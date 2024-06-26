@@ -19,7 +19,7 @@ class RegisterFormVC: UIViewController {
     
     private let camButton: UIButton = {
         let button = UIButton(type: .system)
-        button.tintColor = #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 0.5510881696)
+        button.tintColor = #colorLiteral(red: 0.007843137255, green: 0.003921568627, blue: 0.4901960784, alpha: 1)
         button.contentVerticalAlignment = .fill
         button.contentHorizontalAlignment = .fill
         button.setImage(UIImage(systemName: "camera.circle.fill"), for: .normal)

@@ -20,7 +20,7 @@ class LoginFormVC: UIViewController {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.image = UIImage(named: "2")
+        imageView.image = UIImage(named: "icon")
         imageView.tintColor = .purple
         return imageView
     }()
@@ -48,7 +48,7 @@ class LoginFormVC: UIViewController {
         let button = UIButton(type: .custom)
         button.setTitle("Log In", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
-        button.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 0.5510881696)
+        button.backgroundColor = #colorLiteral(red: 0.007843137255, green: 0.003921568627, blue: 0.4901960784, alpha: 1)
         button.layer.cornerRadius = 10
         button.isEnabled = false
         button.translatesAutoresizingMaskIntoConstraints = false
