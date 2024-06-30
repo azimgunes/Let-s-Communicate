@@ -20,7 +20,7 @@ class ChatInputView: UIView{
     private let textView: UITextView = {
         let textView = UITextView()
         textView.backgroundColor = .white
-        textView.textColor =  #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
+        textView.textColor = #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
         return textView
         
     }()
@@ -36,7 +36,7 @@ class ChatInputView: UIView{
     private let placeholderLabel: UILabel = {
         let label = UILabel()
         label.text = "Text Here..."
-        label.textColor =  #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
+        label.textColor = #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
         return label
         
     }()

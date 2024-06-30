@@ -19,7 +19,7 @@ class RegisterFormVC: UIViewController {
     
     private let camButton: UIButton = {
         let button = UIButton(type: .system)
-        button.tintColor = #colorLiteral(red: 0.007843137255, green: 0.003921568627, blue: 0.4901960784, alpha: 1)
+        button.tintColor = #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
         button.contentVerticalAlignment = .fill
         button.contentHorizontalAlignment = .fill
         button.setImage(UIImage(systemName: "camera.circle.fill"), for: .normal)
@@ -30,7 +30,7 @@ class RegisterFormVC: UIViewController {
     
     private let backButton: UIButton = {
         let button = UIButton(type: .system)
-        button.tintColor = #colorLiteral(red: 0.1215686277, green: 0.01176470611, blue: 0.4235294163, alpha: 1)
+        button.tintColor = #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
         button.contentVerticalAlignment = .fill
         button.contentHorizontalAlignment = .fill
         button.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
@@ -75,7 +75,7 @@ class RegisterFormVC: UIViewController {
         let button = UIButton(type: .custom)
         button.setTitle("Sign Up", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
-        button.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 0.5510881696)
+        button.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
         button.layer.cornerRadius = 10
         button.isEnabled = false
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -160,7 +160,7 @@ extension RegisterFormVC {
         }else {
             registerButton.isEnabled = false
             registerButton.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
-            camButton.tintColor = #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
+            camButton.tintColor =  #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
         }
         
         
@@ -188,7 +188,7 @@ extension RegisterFormVC {
         
         backButton.translatesAutoresizingMaskIntoConstraints = false
         
-        emailTextField.textColor =  #colorLiteral(red: 0.1215686277, green: 0.01176470611, blue: 0.4235294163, alpha: 1)
+        emailTextField.textColor = #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
         
         
         //camButton

@@ -126,7 +126,7 @@ extension HomeVC {
             DispatchQueue.main.async {
                 let controller = UINavigationController(rootViewController: LoginPageVC())
                 controller.modalPresentationStyle = .fullScreen
-                self.present(controller, animated: true)
+                self.present(controller, animated: false)
                 
                 
             }

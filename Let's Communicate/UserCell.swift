@@ -30,7 +30,7 @@ class UserCell: UITableViewCell {
         
         label.font = UIFont.boldSystemFont(ofSize: 16)
         label.text = "Name"
-        label.textColor =   #colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1)
+        label.textColor = #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label

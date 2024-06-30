@@ -14,7 +14,7 @@ class AuthenticationView: UIView {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.image = image
-        imageView.tintColor =  #colorLiteral(red: 0.1215686277, green: 0.01176470611, blue: 0.4235294163, alpha: 1)
+        imageView.tintColor =  #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(imageView)
         textField.translatesAutoresizingMaskIntoConstraints = false
