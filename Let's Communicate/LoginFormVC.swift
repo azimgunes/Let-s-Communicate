@@ -8,7 +8,7 @@
 import UIKit
 import JGProgressHUD
 
-class LoginVC: UIViewController {
+class LoginFormVC: UIViewController {
     
     
     //MARK: Properties
@@ -20,7 +20,7 @@ class LoginVC: UIViewController {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.image = UIImage(named: "appIcon")
+        imageView.image = UIImage(named: "icon")
         imageView.tintColor = .purple
         return imageView
     }()
@@ -74,7 +74,7 @@ class LoginVC: UIViewController {
         Layout()
     }
     @objc private func toRegisterVC(_ sender: UIButton){
-        let controller = RegisterVC()
+        let controller = RegisterFormVC()
         controller.modalPresentationStyle = .fullScreen
         controller.modalTransitionStyle = .crossDissolve
         present(controller, animated: true, completion: nil)
@@ -85,23 +85,22 @@ class LoginVC: UIViewController {
 
 //MARK: Selector
 
-extension LoginVC{
+extension LoginFormVC{
     
     
-    @objc func LogIn(_ sender: UIButton){
+   @objc func LogIn(_ sender: UIButton){
         guard let emailText = emailTextField.text else {return}
         guard let passwordText = passwordTextField.text else {return}
-        self.showHud(showPro: true)
         AuthenticationService.login(withEmail: emailText, password: passwordText) { result, error in
             if let error = error {
-                print("Error: \(error.localizedDescription)")
-                self.showHud(showPro: false)
-                
-                return
+                let alert = UIAlertController(title: "Error!", message: "\(error.localizedDescription)", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "Try Again!", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }else{
+                let controller = UINavigationController(rootViewController: HomeVC())
+                controller.modalPresentationStyle = .fullScreen
+                self.present(controller, animated: true)
             }
-            self.showHud(showPro: false)
-            self.dismiss(animated: true
-            )
         }
         
     }
@@ -121,7 +120,7 @@ extension LoginVC{
 
 
 //MARK: Helpers
-extension LoginVC {
+extension LoginFormVC {
     
     private func loginButtonStatus(){
         if viewModel.status{
@@ -156,6 +155,7 @@ extension LoginVC {
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
         emailContainer.translatesAutoresizingMaskIntoConstraints = false
         registerPage.translatesAutoresizingMaskIntoConstraints = false
+        
         
         // StackView
         
@@ -193,7 +193,7 @@ extension LoginVC {
             stackView.topAnchor.constraint(equalTo: iconImageView.bottomAnchor, constant: 70),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            emailContainer.heightAnchor.constraint(equalToConstant: 30),
+            emailContainer.heightAnchor.constraint(equalToConstant: 45),
             
             //MARK: loginButton
             loginButton.topAnchor.constraint(equalTo: passwordContainer.bottomAnchor, constant: 30),

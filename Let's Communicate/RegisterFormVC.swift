@@ -10,7 +10,7 @@ import FirebaseAuth
 import FirebaseStorage
 import FirebaseFirestore
 
-class RegisterVC: UIViewController {
+class RegisterFormVC: UIViewController {
     //MARK: Proporties
     
     
@@ -19,7 +19,7 @@ class RegisterVC: UIViewController {
     
     private let camButton: UIButton = {
         let button = UIButton(type: .system)
-        button.tintColor = #colorLiteral(red: 0.1215686277, green: 0.01176470611, blue: 0.4235294163, alpha: 1)
+        button.tintColor = #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
         button.contentVerticalAlignment = .fill
         button.contentHorizontalAlignment = .fill
         button.setImage(UIImage(systemName: "camera.circle.fill"), for: .normal)
@@ -30,7 +30,7 @@ class RegisterVC: UIViewController {
     
     private let backButton: UIButton = {
         let button = UIButton(type: .system)
-        button.tintColor = #colorLiteral(red: 0.1215686277, green: 0.01176470611, blue: 0.4235294163, alpha: 1)
+        button.tintColor = #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
         button.contentVerticalAlignment = .fill
         button.contentHorizontalAlignment = .fill
         button.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
@@ -96,7 +96,7 @@ class RegisterVC: UIViewController {
 }
 //MARK: Selectors
 
-extension RegisterVC {
+extension RegisterFormVC {
     @objc private func textFieldChanged(_ sender: UITextField){
         if sender == emailTextField {
             viewModel.email = sender.text
@@ -111,7 +111,7 @@ extension RegisterVC {
     }
     
     @objc private func toLoginVC(_ sender: UIButton){
-        let vc = LoginVC()
+        let vc = LoginFormVC()
         vc.modalPresentationStyle = .fullScreen
         vc.modalTransitionStyle = .crossDissolve
         present(vc, animated: true, completion: nil)
@@ -149,7 +149,7 @@ extension RegisterVC {
 //MARK: Helpers
 
 
-extension RegisterVC {
+extension RegisterFormVC {
     private func registerButtonStatus(){
         if viewModel.status{
             registerButton.isEnabled = true
@@ -160,7 +160,7 @@ extension RegisterVC {
         }else {
             registerButton.isEnabled = false
             registerButton.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
-            camButton.tintColor = #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
+            camButton.tintColor =  #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
         }
         
         
@@ -188,7 +188,7 @@ extension RegisterVC {
         
         backButton.translatesAutoresizingMaskIntoConstraints = false
         
-        emailTextField.textColor =  #colorLiteral(red: 0.1215686277, green: 0.01176470611, blue: 0.4235294163, alpha: 1)
+        emailTextField.textColor = #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
         
         
         //camButton
@@ -232,7 +232,7 @@ extension RegisterVC {
             stackView.topAnchor.constraint(equalTo: camButton.bottomAnchor, constant: 50),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            emailContainer.heightAnchor.constraint(equalToConstant: 30),
+            emailContainer.heightAnchor.constraint(equalToConstant: 45),
             
             
             registerButton.topAnchor.constraint(equalTo: passwordContainer.bottomAnchor, constant: 40),
@@ -248,7 +248,7 @@ extension RegisterVC {
     }
 }
 
-extension RegisterVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension RegisterFormVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[.originalImage] as! UIImage
         self.profileImageUpload = image

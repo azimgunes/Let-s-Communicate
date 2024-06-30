@@ -24,8 +24,8 @@ class HomeVC: UIViewController {
     
     
     //MARK: viewControllers 
-    private let indexVC = IndexVC()
-    private let messageVC = MessageVC()
+    private let indexVC = ChatsVC()
+    private let messageVC = IndexVC()
     
     private lazy var viewControllers: [UIViewController] = [indexVC, messageVC]
     
@@ -76,8 +76,8 @@ extension HomeVC {
         configureGradient()
         
         self.navigationController?.navigationBar.tintColor = .white
-        chatsButton = UIBarButtonItem(customView: configureBar(text: "Index", selector: #selector(chatButton)))
-        messageScreen = UIBarButtonItem(customView: configureBar(text: "Message", selector: #selector(messageButton)))
+        chatsButton = UIBarButtonItem(customView: configureBar(text: "Chats", selector: #selector(chatButton)))
+        messageScreen = UIBarButtonItem(customView: configureBar(text: "Index", selector: #selector(messageButton)))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "person"), style: UIBarButtonItem.Style.done, target: self, action: #selector(profileButton))
         self.navigationItem.leftBarButtonItems = [chatsButton, messageScreen]
         profileView.translatesAutoresizingMaskIntoConstraints = false
@@ -124,9 +124,9 @@ extension HomeVC {
     private func AuthStatus(){
         if Auth.auth().currentUser?.uid == nil {
             DispatchQueue.main.async {
-                let controller = UINavigationController(rootViewController: LoginVC())
+                let controller = UINavigationController(rootViewController: LoginPageVC())
                 controller.modalPresentationStyle = .fullScreen
-                self.present(controller, animated: true)
+                self.present(controller, animated: false)
                 
                 
             }
@@ -163,7 +163,7 @@ extension HomeVC{
     }
     
     @objc private func chatButton(){
-        if self.container.children.first == IndexVC() {return}
+        if self.container.children.first == ChatsVC() {return}
         self.messageScreen.customView?.alpha = 0.5
         self.chatsButton.customView?.alpha = 1
         self.container.add(viewControllers[0])
@@ -171,7 +171,7 @@ extension HomeVC{
     }
     
     @objc private func messageButton(){
-        if self.container.children.first == IndexVC() {return}
+        if self.container.children.first == ChatsVC() {return}
         self.messageScreen.customView?.alpha = 1
         self.chatsButton.customView?.alpha = 0.5
         self.container.add(viewControllers[1])
@@ -204,7 +204,7 @@ extension HomeVC: messageVCProtocol{
 
 //MARK: IndexVcProtocol
 extension HomeVC: IndexVcProtocol {
-    func showMessageVc(_ indexVC: IndexVC, user: User) {
+    func showMessageVc(_ indexVC: ChatsVC, user: User) {
         let controller = ChatVC(user: user)
         self.navigationController?.pushViewController(controller, animated: true)
         
