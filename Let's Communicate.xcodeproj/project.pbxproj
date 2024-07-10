@@ -10,6 +10,7 @@
 		3C006B532C0DEB5500471E8E /* MessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C006B522C0DEB5500471E8E /* MessageViewModel.swift */; };
 		3C0460472BFB4AF400300139 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0460462BFB4AF400300139 /* ChatVC.swift */; };
 		3C196CD32BD1919300C866F8 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C196CD22BD1919300C866F8 /* AuthenticationService.swift */; };
+		3C2197D32C3EDD2900345332 /* NewPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2197D22C3EDD2900345332 /* NewPasswordVC.swift */; };
 		3C2BAD172C050A4100E7D17B /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2BAD162C050A4100E7D17B /* MessageCell.swift */; };
 		3C382CF82C1B63DF00CFAC34 /* IndexCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C382CF72C1B63DF00CFAC34 /* IndexCell.swift */; };
 		3C382CFA2C1B85EA00CFAC34 /* IndexViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C382CF92C1B85EA00CFAC34 /* IndexViewModel.swift */; };
@@ -73,6 +74,7 @@
 		3C006B522C0DEB5500471E8E /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
 		3C0460462BFB4AF400300139 /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
 		3C196CD22BD1919300C866F8 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
+		3C2197D22C3EDD2900345332 /* NewPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordVC.swift; sourceTree = "<group>"; };
 		3C2BAD162C050A4100E7D17B /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		3C382CF72C1B63DF00CFAC34 /* IndexCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexCell.swift; sourceTree = "<group>"; };
 		3C382CF92C1B85EA00CFAC34 /* IndexViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexViewModel.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 			children = (
 				3CCAD67E2C2B0C0A00397DA2 /* LoginPageVC.swift */,
 				3CFA7BD22BB217A2000DA8F2 /* LoginFormVC.swift */,
+				3C2197D22C3EDD2900345332 /* NewPasswordVC.swift */,
 				3CB548302BC1EF7100283BF1 /* RegisterFormVC.swift */,
 				3C8263552BD91CC1004068C0 /* HomeVC.swift */,
 				3CC7CCF02BF10FE30020EB6E /* ChatsVC.swift */,
@@ -388,6 +391,7 @@
 				3C52AC132BB5B6440012C1F6 /* AuthenticationView.swift in Sources */,
 				3C8263562BD91CC1004068C0 /* HomeVC.swift in Sources */,
 				3CF203702BFD225C005C0D18 /* ChatInputView.swift in Sources */,
+				3C2197D32C3EDD2900345332 /* NewPasswordVC.swift in Sources */,
 				3C196CD32BD1919300C866F8 /* AuthenticationService.swift in Sources */,
 				3CCAD67F2C2B0C0A00397DA2 /* LoginPageVC.swift in Sources */,
 			);
@@ -547,8 +551,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -575,8 +578,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

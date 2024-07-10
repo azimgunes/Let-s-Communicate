@@ -48,6 +48,9 @@ class IndexVC: UIViewController {
 
 extension IndexVC{
     private func style(){
+        
+        configureGradient()
+
         //Table View
         tableView.delegate =  self
         tableView.dataSource = self
