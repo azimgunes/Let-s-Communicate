@@ -55,7 +55,13 @@ class LoginFormVC: UIViewController {
         button.addTarget(self, action: #selector(LogIn), for: .touchUpInside)
         return button
     }()
-    
+    private lazy var newPasswordButton: UIButton = {
+        let button = UIButton(type: .system)
+        let attributeTitle = NSMutableAttributedString(string: "Forgot password?", attributes: [.foregroundColor: UIColor(#colorLiteral(red: 0.1215686277, green: 0.01176470611, blue: 0.4235294163, alpha: 1)), .font: UIFont.boldSystemFont(ofSize: 12)])
+        button.setAttributedTitle(attributeTitle, for: .normal)
+        button.addTarget(self, action: #selector(toNewPasswordVC), for: .touchUpInside)
+        return button
+    }()
     
     private lazy var registerPage: UIButton = {
         let button = UIButton(type: .system)
@@ -79,7 +85,12 @@ class LoginFormVC: UIViewController {
         controller.modalTransitionStyle = .crossDissolve
         present(controller, animated: true, completion: nil)
     }
-    
+    @objc private func toNewPasswordVC(_ sender: UIButton){
+        let controller = NewPasswordVC()
+        controller.modalPresentationStyle = .fullScreen
+        controller.modalTransitionStyle = .crossDissolve
+        present(controller, animated: true, completion: nil)
+    }
 }
 
 
@@ -155,6 +166,8 @@ extension LoginFormVC {
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
         emailContainer.translatesAutoresizingMaskIntoConstraints = false
         registerPage.translatesAutoresizingMaskIntoConstraints = false
+        newPasswordButton.translatesAutoresizingMaskIntoConstraints = false
+    
         
         
         // StackView
@@ -176,7 +189,9 @@ extension LoginFormVC {
         view.addSubview(iconImageView)
         view.addSubview(stackView)
         view.addSubview(loginButton)
+        view.addSubview(newPasswordButton)
         view.addSubview(registerPage)
+        
         
         
         
@@ -197,13 +212,18 @@ extension LoginFormVC {
             
             //MARK: loginButton
             loginButton.topAnchor.constraint(equalTo: passwordContainer.bottomAnchor, constant: 30),
-            loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 150),
-            loginButton.widthAnchor.constraint(equalToConstant: 100),
+            loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loginButton.widthAnchor.constraint(equalToConstant: 130),
             
             //MARK: RegisterVcButton
             registerPage.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 5),
             registerPage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 36),
             view.trailingAnchor.constraint(equalTo: registerPage.trailingAnchor, constant: 32),
+            
+            //MARK: toNewPasswordVC
+            newPasswordButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 8),
+            newPasswordButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 36),
+            view.trailingAnchor.constraint(equalTo: newPasswordButton.trailingAnchor, constant: 32),
             
             
             
