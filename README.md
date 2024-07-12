@@ -10,7 +10,7 @@ The role of communication in our lives is indisputable; in the 21st century, com
 
 ## **:round_pushpin: Home Views**
 
-  ![Group 2](https://github.com/azimgunes/Let-s-Communicate/blob/Main/Project%20Screens/2.png)
+  ![Group 2](https://github.com/azimgunes/Let-s-Communicate/blob/Main/Project%20Screens/2.1.png)
 
 ## **:round_pushpin: Chat VC & Profile View**
 
